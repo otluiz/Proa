@@ -1,0 +1,5 @@
+\babel@toc {brazil}{}
+\beamer@sectionintoc {1}{Respondendo a eventos no React}{4}{0}{1}
+\beamer@sectionintoc {2}{Ganchos ou Hooks?}{6}{0}{2}
+\beamer@sectionintoc {3}{Adicionando ``estado''}{13}{0}{3}
+\beamer@sectionintoc {4}{Upgrade ao componente ContaBancaria}{14}{0}{4}

@@ -1,0 +1,9 @@
+\babel@toc {brazil}{}\relax 
+\beamer@sectionintoc {1}{Entrutura das páginas do seu projeto}{3}{0}{1}
+\beamer@sectionintoc {2}{Como fica seu projeto: sugestão}{7}{0}{2}
+\beamer@sectionintoc {3}{Estrutura raiz do projeto}{9}{0}{3}
+\beamer@sectionintoc {4}{Estruturas de repetição em JavaScript}{10}{0}{4}
+\beamer@subsectionintoc {4}{1}{Sobre o uso de variáveis em JavaScript}{15}{0}{4}
+\beamer@subsectionintoc {4}{2}{Vendo exemplos práticos}{18}{0}{4}
+\beamer@sectionintoc {5}{Teste de primalidade}{28}{0}{5}
+\beamer@subsectionintoc {5}{1}{Vários tipos de algoritmos para testar se é primo}{28}{0}{5}

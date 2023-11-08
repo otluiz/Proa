@@ -1,0 +1,4 @@
+\babel@toc {brazil}{}\relax 
+\beamer@sectionintoc {1}{Entrada de dados}{3}{0}{1}
+\beamer@sectionintoc {2}{Funções Especiais}{7}{0}{2}
+\beamer@sectionintoc {3}{Calculos com um pouco mais desafio}{17}{0}{3}

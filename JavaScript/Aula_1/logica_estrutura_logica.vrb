@@ -1,0 +1,11 @@
+\frametitle{Conversão de Temperatura (HTML) - terceira parte}
+  Código JavaScript:
+  \begin{verbatim}
+
+   document.getElementById("resultado").innerHTML = resultado;
+  }
+  </script>
+</body>
+</html>
+  \end{verbatim}
+ Terceira e última parte do código html. Juntar as 3 partes num só arquivo

@@ -1,0 +1,7 @@
+\babel@toc {brazil}{}\relax 
+\beamer@sectionintoc {1}{Estrutura de pastas dos nossos projetos}{3}{0}{1}
+\beamer@sectionintoc {2}{Criando um componente (do zero)}{5}{0}{2}
+\beamer@sectionintoc {3}{JSX}{19}{0}{3}
+\beamer@sectionintoc {4}{Template Expressions}{25}{0}{4}
+\beamer@sectionintoc {5}{Hooks}{31}{0}{5}
+\beamer@sectionintoc {6}{JSX}{41}{0}{6}

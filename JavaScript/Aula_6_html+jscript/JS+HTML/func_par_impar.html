@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Função Par ou Ímpar</h1>
+  <button onclick="parImpar()">Clique para testar</button>
+
+  <script>
+    function parImpar() {
+      const num1 = parseFloat(prompt("Digite o primeiro número:"));
+      if (num1 % 2 == 0) {
+        alert(`É par o número: ${num1}`);
+      } else {
+        alert(`É ímpar o número: ${num1}`);
+      }
+    }
+  </script>
+</body>
+</html>
+
+

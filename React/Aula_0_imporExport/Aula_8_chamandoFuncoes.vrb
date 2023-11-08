@@ -1,0 +1,17 @@
+\frametitle{Exemplo de formulário para apresentação da solução}
+
+\begin{verbatim}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercício 1</title>
+  <script src="./script.js"></script>
+</head>
+<body>
+  <h1>Exercício 1</h1>
+  <button onclick="exercicio1()">Clique para Executar</button>
+</body>
+</html>
+\end{verbatim}
+

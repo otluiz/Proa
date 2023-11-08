@@ -1,0 +1,278 @@
+﻿Comando JS par criar um projeto
+
+
+    1. Criar sua pasta do projeto
+    2. Entrar na pasta do seu projeto
+    3. Dar o comando para criar um projeto React
+       
+    npx create-react-app seu-app
+       
+    4. Foram criadas várias pastas de um projeto em React
+       
+    5. Iniciar a aplicação
+
+    npm start
+       
+    6. Um componente padrão foi criado (http://localhost:3000)
+       
+    7. Na pasta src poderá criar sua pasta componente (ex: $mkdir componente) 
+
+    8. Entrar nessa pasta com o comando cd componente (no VSCode)
+
+    9. Criar o arquivo ClickComponente.js (no VSCode)
+
+    11. Um componente possui (ao menos)
+
+    	a) Um comando import, tipo: import React from ‘react’
+    	b) Uma função que vai definir o componente ex: 
+		function MeuComponente() { 
+			…
+		} 
+    	c) Dentro dessa função deve ter uma tag: <div> … </div>
+       	function MeuComponente() {
+			<div> … </div>
+       	}
+
+    d) Um comando export, tipo: export default MeuComponente;
+
+
+    e) Exemplo completo:
+
+	import React from 'react';
+
+	function MeuComponente() {
+  		return (
+    			<div>
+      			Meu componente
+    			</div>
+  		);
+	}
+
+	export default MeuComponente;
+
+
+
+
+
+
+ 
+
+
+O que são Hooks (no React)
+
+Os ganchos React são funções que permitem "conectar-se" ao estado React e aos recursos do ciclo de vida a partir de componentes funcionais. Antes da introdução dos React Hooks, os recursos de estado e ciclo de vida estavam disponíveis apenas em componentes de classe. 
+
+React Hooks fornecem uma maneira de gerenciar o estado e o ciclo de vida de componentes funcionais, tornando-os mais poderosos e flexíveis.
+Ganchos de reação comuns
+
+O React JS 18 fornece vários ganchos integrados que você pode usar em seus componentes. Aqui estão alguns dos ganchos mais comuns:
+
+useState: Este gancho permite adicionar estado aos seus componentes funcionais. Ele pega um valor de estado inicial e retorna um array com o valor do estado atual e uma função para atualizar o estado.
+
+useEffect: Este gancho permite que você execute efeitos colaterais, como busca de dados, quando seu componente é montado ou atualizado. É necessária uma função que executa o efeito colateral e uma matriz opcional de dependências que determinam quando o efeito deve ser executado
+
+
+
+O compnente Botão, com ‘nova roupa’
+
+function MeuBotao() {
+  const [contar, setContar] = useState(0);
+  function manipulaClick() {
+    setContar(contar + 1);
+  }
+  return (
+    <button onClick={manipulaClick}>
+      Clicou {contar} vezes
+    </button>
+  );
+}
+
+
+
+%--------------------------------------------
+Outro componente
+
+import React from ‘react’
+
+  const ContaBancaria = (props) => {
+	return (
+	  <h1>Meu saldo é {props.saldoInicial}</h1>
+	)
+  }
+ export dafault ContaBancaria;
+
+
+
+
+Upgrade ao componente, colocando Hooks de estado
+
+//import React from ‘react’
+
+  const ContaBancaria = (props) => {
+	const [saldo, setSaldo] = useState(props.saldoInicial)
+
+	const aumentaSaldo = () => {
+	  setSaldo(saldo + 1000)
+	}
+
+	return <> // ← que coisa estranha aqui !!
+		<h1>Meu saldo é { ? }</h1> // qual variável colocar?
+		<button onClick={ ? }>Aumentar</button>
+	</>; // ← isso também aqui !!
+  }
+ export dafault ContaBancaria;
+
+
+%----------------------------
+Outra forma de fazer o mesmo upgrade ao componente ContaBancaria
+
+import React, { useState } from 'react';
+import ContaBancaria from './ContaBancaria';
+
+function App() {
+  const [saldo, setSaldo] = useState(1000); // Valor inicial do saldo
+
+  // Função para atualizar o saldo
+  const atualizarSaldo = (novoSaldo) => {
+    setSaldo(novoSaldo);
+  };
+
+  // se tivesse um botão, poderia ficar
+  const manipulaBotaoClick = () => {
+    const novoSaldo = saldo + 100;
+    atualizarSaldo(novoSaldo);
+  };
+
+
+  return (
+    <div>
+      <h1>Minha Aplicação Bancária</h1>
+	<p>Saldo: {saldo}</p>
+      <ContaBancaria saldoInicial={saldo} atualizarSaldo={atualizarSaldo} />
+      <button onClick={manipulaBotaoClick}>Depositar 100</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+Neste exemplo, eu adicionei um novo botão que aumenta o saldo quando clicado. 
+
+A função manipulaBotaoClick é chamada quando o botão é clicado, e ela atualiza o saldo chamando atualizarSaldo com o novo valor.
+
+Certifique-se de que o componente ContaBancaria agora é renderizado como parte do aplicativo principal. 
+
+Quando você clica no botão "Depositar 100", o saldo será atualizado e o componente ContaBancaria refletirá esse novo saldo.
+
+
+
+###############################################################
+## Entendendo, mais a fundo o useState dos componentes React ##
+###############################################################
+
+O useState nos permite criar estados em um componente criado a partir de uma função, assim como o state presente em componentes criados a partir de classes.
+
+Veja o exemplo pela óptica das Classes:
+
+class Treinamento extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = { 
+		nome: 'Treinamento' // Estado inicial com a propriedade "nome" inicializada como 'Treinamento'
+		}
+	}
+	
+	render(){
+		return {
+		   <div>
+			<p>{this.state.nome}</p> {/* Exibe o valor da propriedade "nome" do estado */}
+	            <button onClick={() => this.setState({nome: 'React'})}>CLICK</button>
+		   </div>
+		}
+	}
+}
+
+
+%------------------ Código completo da classe Treinamento incluindo o método STATE, detalhado -------------------
+class MeuComponente extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nome: 'Treinamento'
+    };
+  }
+
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    this.render(); // Re-renderiza o componente para refletir as mudanças no estado
+  }
+
+  render() {
+    return (
+      <div>
+        <p>{this.state.nome}</p>
+        <button onClick={() => this.setState({ nome: 'React' })}>CLICK</button>
+      </div>
+    );
+  }
+}
+
+Neste exemplo, "setState" é uma função que recebe um objeto com as atualizações de estado que você deseja fazer.
+Ele mescla o estado atual (this.state) com o novo estado usando o operador spread (...) e, em seguida,
+chama this.render() para re-renderizar o componente e refletir as mudanças no DOM.
+
+No entanto, esta é uma simplificação e não representa como setState é implementado internamente no React.
+A versão real do setState no React lida com várias considerações de desempenho, concorrência e reatividade
+que não estão cobertas nesta implementação simples. No uso prático do React, você deve sempre usar o setState
+fornecido pelo React para garantir um comportamento correto e eficiente.
+
+
+%%%--------------- A mesma classe, só que agora usando Hooks -----------------------------------------------------
+
+O mesmo código, agora usando Hooks:
+
+import React , { useState } from ’react ’
+
+function Treinamento (props){
+	const [nome, setNome] = useState('Treinamento');
+	
+		return {
+			<div>
+				<p>{nome}</p>
+				<button onClick={() => setNome('React')} >CLICK</button>
+			</div>
+		}
+}
+ export default Treinamento;
+
+O useState() cria uma variável que controlará o estado do componente. 
+Se quiser outra variável execute outro useState().
+
+%---------------------------------------------------------------
+
+Desafio de aula
+
+Crie um componente React que:
+soma o valor   a = 2 e b = 2
+mostre o resultado da soma.
+Pode ser em um console.log({a} + {b})
+%%------------------------------------------------------
+import React from 'react';
+
+const valor1 = 10;
+const valor2 = 20;
+
+const SomaResultado = () => {
+    const resultado = valor1 + valor2;
+    return(
+        <div>
+            <h1>Resultado da Soma</h1>
+            <h1>A soma {valor1} + {valor2} = {resultado}</h1>
+        </div>
+    )
+}
+export default SomaResultado;
+
+
+%%------------------------------------------------

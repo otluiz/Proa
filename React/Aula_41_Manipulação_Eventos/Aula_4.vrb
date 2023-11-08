@@ -1,0 +1,20 @@
+\frametitle{Usando Hooks ao invés de classes}
+\framesubtitle{Seja o seguinte componente hook do exemplo anterior}
+
+\begin{lstlisting}[language=JavaScript]
+import React, { useState } from 'react';
+
+const Treinamento = () => {
+  const [nome, setNome] = useState('Treinamento'); // Inicializa o estado com 'Treinamento'
+
+  return (
+    <div>
+      <p>{nome}</p> {/* Exibe o valor do estado 'nome' */}
+      <button onClick={() => setNome('React')}>CLICK</button> {/* Atualiza o estado 'nome' para 'React' quando o botao eh clicado */}
+    </div>
+  );
+};
+
+export default Treinamento;
+\end{lstlisting}
+

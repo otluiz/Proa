@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Função Somar Dois Números</h1>
+  <button onclick="somarNumeros()">Somar</button>
+
+  <script>
+    function somarNumeros() {
+      const num1 = parseFloat(prompt("Digite o primeiro número:"));
+      const num2 = parseFloat(prompt("Digite o segundo número:"));
+      const resultado = num1 + num2;
+      alert(`A soma é: ${resultado}`);
+    }
+  </script>
+</body>
+</html>

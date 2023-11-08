@@ -1,0 +1,23 @@
+\frametitle{Upgrade}
+\framesubtitle{Bora fazer?}
+
+\begin{lstlisting}[language=JavaScript]
+import React, { useState } from 'react';
+import ContaBancaria from './ContaBancaria';
+
+function App() {
+  const [saldo, setSaldo] = useState(1000); // Valor inicial do saldo
+
+  const atualizarSaldo = (novoSaldo) => {
+    setSaldo(novoSaldo);
+  };
+  return (
+    <div>
+      <h1>Minha Aplicacao Bancria</h1>
+      <ContaBancaria saldoInicial={saldo} atualizarSaldo={atualizarSaldo} />
+    </div>
+  );
+}
+export default App;
+\end{lstlisting}
+

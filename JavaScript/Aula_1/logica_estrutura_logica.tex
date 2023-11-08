@@ -1,0 +1,626 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+%\documentclass[[11pt, xcolor={dvipsnames,svgnames,table},portuguese]{beamer} 
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Lógica de Programação com Java Script}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Apresentação}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Apresentação}
+\framesubtitle{Quem sou  e objetivo da aula}
+Othon L. T de Oliveira
+	\begin{block}{Professor:}
+		\begin{itemize}
+		 \pause
+		 \item Ensina: Introdução a Programação, Lógica de Programação, e outras disciplinas
+		\end{itemize}
+	\end{block}	
+	\pause
+	\begin{block}{Trabalho: }
+		 Analista de Infraestrutura: Reitoria da UPE
+	\end{block}
+	\pause
+	\begin{block}{Formação acadêmica}
+		Engenharia Informática de Gestão (Politécnico de Portugal)
+		\pause
+		Mestrado em Engenharia de Sistemas (Escola Politécnica de Pernambuco - Poli)
+		\pause
+		Doutorando em Engenharia de Produção (Universidade Tecnilógica Federal do Paraná - UTFPR)
+	\end{block}	
+
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Introdução}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Conceitos}
+\framesubtitle{Introdução a Lógica de Programação com Java Script}
+	\begin{block}{Breve introdução}
+		\begin{itemize}
+		  \item[a.] Breve explicação sobre a importância da lógica de programação 
+		  \pause
+		  \item[b.] Como ela é usada em todos os tipos de desenvolvimento de software
+		   \pause		  
+		  \item[c.] Java Script é basicamente uma linguagem client-side (navegadores)
+		  \pause
+		  \item[d.] Contudo Java Script hoje em dia é também server-side (servidores)
+		\end{itemize}
+	\end{block} 
+\end{frame}
+
+
+\begin{frame}
+\frametitle{JavaScript}
+\framesubtitle{Introdução}
+
+JavaScript é uma linguagem de programação amplamente utilizada para desenvolvimento web.
+
+\begin{itemize}
+  \item Interpretada, executada no navegador
+  \item Adiciona interatividade e dinamismo às páginas web
+  \item Compatível com HTML e CSS
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{JavaScript}
+\framesubtitle{Recursos}
+
+Recursos Principais:
+
+\begin{itemize}
+  \item Manipulação do DOM
+  \item Eventos e interatividade
+  \item Requisições assíncronas (AJAX)
+  \item Frameworks populares: React, Angular, Vue
+\end{itemize}
+
+Vantagens:
+
+\begin{itemize}
+  \item Amplamente suportado nos navegadores
+  \item Versatilidade e flexibilidade
+  \item Comunidade ativa e vasta documentação
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DOM - Modelo de Objeto de Documento}
+
+O DOM é uma representação em árvore da estrutura do documento HTML.
+
+\begin{itemize}
+  \item Permite manipular elementos HTML com JavaScript
+  \item Facilita adicionar, remover ou alterar conteúdo
+  \item Atualizações dinâmicas em páginas web
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ajax - Asynchronous JavaScript and XML}
+
+Ajax é uma técnica que permite atualizações assíncronas em páginas web.
+
+\begin{itemize}
+  \item Atualiza partes da página sem recarregá-la completamente
+  \item Melhora a experiência do usuário e economiza largura de banda
+  \item Usa requisições HTTP assíncronas para buscar ou enviar dados
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{React}
+
+React é uma biblioteca JavaScript para construir interfaces de usuário.
+
+\begin{itemize}
+  \item Desenvolvido pelo Facebook
+  \item Componentização: construção de UIs em pedaços reutilizáveis
+  \item Atualizações eficientes com a virtual DOM
+  \item Uso em aplicações web e mobile (React Native)
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Vue.js}
+
+Vue.js é um framework progressivo para construir interfaces de usuário.
+
+\begin{itemize}
+  \item Fácil integração com projetos existentes
+  \item Abordagem gradual: adicione Vue a partes específicas do projeto
+  \item Reativo e eficiente, com renderização de componentes
+  \item Ecossistema sólido e documentação abrangente
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{JavaScript}
+\framesubtitle{Lado do Servidor}
+
+Hoje em dia, JavaScript também é utilizado no lado do servidor, com o Node.js.
+
+\begin{itemize}
+  \item Node.js permite executar JavaScript no servidor
+  \item Ideal para desenvolvimento de aplicações escaláveis e em tempo real
+  \item Facilita a criação de servidores web e APIs
+\end{itemize}
+
+\end{frame}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Operadores lógicos}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}{Operadores Lógicos}
+\framesubtitle{Operador Lógico AND (\&\&)}
+	\begin{block}{Atuação}
+		\begin{itemize}
+		  \item[a. ] O operador lógico AND (\&\&) combina duas condições 
+		  \pause
+		  \item[b. ] Retorna verdadeiro (true) apenas se ambas as condições forem verdadeiras
+		\end{itemize}
+	\end{block}	
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\framesubtitle{Operador Lógico AND (\&\&)}
+ Exemplo de pseudo-código usando o operador lógico AND
+
+	\begin{verbatim}
+		SE (condição1 for verdadeira) E (condição2 for verdadeira)
+		ENTAO
+		  // Executar código se ambas as condições forem verdadeiras
+		FIM SE
+	\end{verbatim}
+	---------------------------------\\
+	Exemplo em Java Script
+	\begin{verbatim}
+	if (condicao1 && condicao2) {
+  		// Executar código se ambas as condições forem verdadeiras
+	}
+
+	\end{verbatim}
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Operadores Lógicos}
+\framesubtitle{Operador Lógico OR ($||$)}
+	\begin{block}{Atuação}
+		\begin{itemize}
+		  \item[a. ] O operador lógico OR ($||$) combina duas condições 
+		  \pause
+		  \item[b. ] Retorna verdadeiro (true) se apenas uma das condições for verdadeira
+		\end{itemize}
+	\end{block}	
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\framesubtitle{Operador Lógico OR ($||$)}
+ Exemplo de pseudo-código usando o operador lógico OR
+	\begin{verbatim}
+	SE (condição1 for verdadeira) OU (condição2 for verdadeira)
+	ENTAO
+  // Executar código se pelo menos uma das condições for verdadeira
+	FIM SE
+	\end{verbatim}
+	---------------------------------\\
+	Exemplo em Java Script
+	\begin{verbatim}
+	if (condicao1 || condicao2) {
+  	// Executar código se pelo menos uma das condições for verdadeira
+	}
+	\end{verbatim}
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Operadores Lógicos}
+\framesubtitle{Operador Lógico NOT ($!$)}
+	\begin{block}{Atuação}
+		\begin{itemize}
+		  \item[a. ] O operador lógico NOT ($!$) inverte o valor de uma condição, transformando verdadeiro em falso e falso em verdadeiro. 
+		\end{itemize}
+	\end{block}	
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\framesubtitle{Operador Lógico NOT ($!$)}
+ Exemplo de pseudo-código usando o operador lógico NOT
+	\begin{verbatim}
+	SE NAO (condição for verdadeira)
+	ENTAO
+  	// Executar código se a condição for falsa
+	FIM SE
+	\end{verbatim}
+	---------------------------------\\
+	Exemplo em Java Script
+	\begin{verbatim}
+	if (!condicao) {
+  	// Executar código se a condição for falsa
+	}
+	\end{verbatim}
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\framesubtitle{Exemplo prático de um programa Java Script}
+ Demonstração de um exemplo prático de uso de operadores lógicos em JavaScript.\\
+ Código Java Script:
+	\begin{verbatim}
+	const idade = 15;
+    const possuiPermissao = true;
+
+	if (idade >= 18 || possuiPermissao) {
+  		console.log("Acesso permitido!");
+	} else {
+  		console.log("Acesso negado!");
+	}
+	\end{verbatim}	
+	Qual o resultado, após executar o código?
+\end{frame}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Estruturas de decisão}
+\subsection*{IF - ELSE}
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}
+  \frametitle{Introdução às Estruturas de Decisão}
+  Breve explicação sobre a importância das estruturas de decisão em programação e como elas permitem que o programa tome decisões com base em condições.
+
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+  \frametitle{Estrutura Básica de um Programa}
+  \begin{itemize}
+    \item Exemplo de Pseudo-Linguagem:
+    \begin{verbatim}
+  SE (condição for verdadeira)
+  ENTAO
+    // Executar código se a condição for verdadeira
+  FIM SE
+    \end{verbatim}
+  \end{itemize}
+  
+   \begin{itemize}
+    \item Exemplo Java Script:
+    \begin{verbatim}
+  if (condicao) {
+    // Executar código se a condição for verdadeira
+  }
+    \end{verbatim}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Estrutura IF-ELSE IF-ELSE}
+  A estrutura \texttt{if-else if-else} permite avaliar várias condições em sequência e executar o bloco de código correspondente à primeira condição verdadeira.
+  \newline
+  Exemplo em Pseudo-Linguagem:
+  \begin{verbatim}
+  SE (condição1 for verdadeira)
+  ENTAO
+    // Executar código se a condição1 for verdadeira
+  SENAO SE (condição2 for verdadeira)
+    // Executar código se a condição2 for verdadeira
+  SENAO
+    // Executar código se nenhuma das condições for verdadeira
+  FIM SE
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Estrutura IF-ELSE IF-ELSE}
+  A estrutura \texttt{if-else if-else} permite avaliar várias condições em sequência e executar o bloco de código correspondente à primeira condição verdadeira.
+  \newline
+  Exemplo em JavaScript:
+  \begin{verbatim}
+  if (condicao1) {
+    // Executar código se a condição1 for verdadeira
+  } else if (condicao2) {
+    // Executar código se a condição2 for verdadeira
+  } else {
+    // Executar código se nenhuma das condições for verdadeira
+  }
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Estrutura SWITCH-CASE}
+  A estrutura \texttt{switch-case} é usada para avaliar um valor e executar um bloco de código correspondente ao valor.
+  \newline
+  Exemplo em Pseudo-Linguagem:
+  \begin{verbatim}
+  ESCOLHA (valor)
+  CASO opcao1:
+    // Executar código se o valor for opcao1
+    INTERROMPER
+  CASO opcao2:
+    // Executar código se o valor for opcao2
+    INTERROMPER
+  PADRAO:
+    // Executar código se o valor não for correspondente a nenhum caso
+  FIM ESCOLHA
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Estrutura SWITCH-CASE}
+  A estrutura \texttt{switch-case} é usada para avaliar um valor e executar um bloco de código correspondente ao valor.
+  \newline
+  Exemplo em JavaScript:
+  \begin{verbatim}
+  switch (valor) {
+    case opcao1:
+      // Executar código se o valor for opcao1
+      break;
+    case opcao2:
+      // Executar código se o valor for opcao2
+      break;
+    default:
+      // Executar código se o valor não for correspondente a nenhum caso
+  }
+  \end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Exemplo Prático em JavaScript (IF-ELSE)}
+  %\newline
+  Exemplo em JavaScript:
+  \begin{verbatim}
+  const idade = 15;
+
+  if (idade >= 18) {
+    console.log("Você é maior de idade.");
+  } else {
+    console.log("Você é menor de idade.");
+  }
+  \end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Exemplo Prático em JavaScript (IF-ELSE IF-ELSE)}
+  Código JavaScript:
+  \begin{verbatim}
+  const nota = 85;
+
+  if (nota >= 90) {
+    console.log("Nota A");
+  } else if (nota >= 80) {
+    console.log("Nota B");
+  } else if (nota >= 70) {
+    console.log("Nota C");
+  } else {
+    console.log("Nota abaixo de C");
+  }
+  \end{verbatim}
+  Com base na nota, é exibida a mensagem correspondente à faixa de notas.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Exemplo Prático em JavaScript (SWITCH-CASE)}
+  Código JavaScript:
+  \begin{verbatim}
+  const diaDaSemana = "quarta";
+  switch (diaDaSemana) {
+    case "segunda":
+      console.log("Dia de trabalho"); break;
+    case "terca":
+      console.log("Dia de trabalho"); break;
+    case "quarta":
+      console.log("Meio da semana");  break;
+    case "quinta":
+      console.log("Dia de trabalho"); break;
+    case "sexta":
+      console.log("Dia de trabalho"); break;
+    default:
+      console.log("Fim de semana");
+  }
+  \end{verbatim}
+  Com base no dia da semana, é exibida a mensagem correspondente à descrição do dia.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Conversão de Temperatura}
+  Vamos pratica?\\ Faça um programinha que solicita ao usuário uma temperatura em graus Celsius e realiza a conversão para graus Fahrenheit e Kelvin.\\
+  Há duas soluções apresentadas. Uma roda diretamente no console do navegador.\\
+  A outra você deve fazer criar um arquivo HTML (com o nome que você escolher).\\
+  O código HTML está em dois slides, contudo você deve colocar tudo em um só arquivo.\\
+  Lembrando novamente, essa é uma solução possível. Você não deve se limitar ao código do professor.\\
+  É muito mais importante você modificar o cógido, fazendo do seu jeito, ou, fazer um totalmente diferente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Conversão de Temperatura (Pseudo-Linguagem)}
+  Pseudo-Linguagem: (ou pseudo-código)
+  \begin{verbatim}
+  LER temperaturaCelcius
+  temperaturaFahrenheit <- (temperaturaCelcius * 9/5) + 32
+  temperaturaKelvin <- temperaturaCelcius + 273.15
+  ESCREVER "Temperatura em Fahrenheit:", temperaturaFahrenheit
+  ESCREVER "Temperatura em Kelvin:", temperaturaKelvin
+  \end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Conversão de Temperatura (JavaScript)}
+  Código JavaScript:
+  \begin{verbatim}
+  const temperaturaCelcius = parseFloat(prompt(
+        "Digite a temperatura em Celsius:"));
+  const temperaturaFahrenheit = (temperaturaCelcius * 9/5) + 32;
+  const temperaturaKelvin = temperaturaCelcius + 273.15;
+
+  console.log("Temperatura em Fahrenheit:", temperaturaFahrenheit);
+  console.log("Temperatura em Kelvin:", temperaturaKelvin);
+  \end{verbatim}
+  Esse código pode rodar diretamente na console do navegador (F12), por exemplo; no navegador Firefox ou no navegador Chrome.
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Conversão de Temperatura (HTML) - primeira parte}
+  Código HTML:
+  \begin{verbatim}
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, 
+     initial-scale=1.0">
+  <title>Conversão de Temperatura</title>
+</head>
+<body>
+  <h1>Conversão de Temperatura</h1>
+  <label>Digite a temperatura em Celsius: <input type="number" 
+    id="temperaturaInput"></label>
+  <button onclick="converterTemperatura()">Converter</button>
+  <p id="resultado"></p>
+  \end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Conversão de Temperatura (HTML) - segunda parte}
+  Código HTML:
+  \begin{verbatim}
+  <script>
+  function conversaoTemperatura() {
+   const temperaturaCelsius = parseFloat(
+   document.getElementById("temperaturaInput").value);
+      
+   const temperaturaFahrenheit=(temperaturaCelsius * 9/5) + 32;
+   const temperaturaKelvin = temperaturaCelsius + 273.15;
+   const resultado = `
+     Temperatura em Celsius: ${temperaturaCelsius}°C<br>
+     Temperatura em Fahrenheit: ${temperaturaFahrenheit.toFixed(2)}°F<br>
+     Temperatura em Kelvin: ${temperaturaKelvin.toFixed(2)}K
+   `;
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Conversão de Temperatura (HTML) - terceira parte}
+  Código JavaScript:
+  \begin{verbatim}
+
+   document.getElementById("resultado").innerHTML = resultado;
+  }
+  </script>
+</body>
+</html>
+  \end{verbatim}
+ Terceira e última parte do código html. Juntar as 3 partes num só arquivo
+\end{frame}
+
+
+
+
+%-----------------------------------------------
+
+\end{document}

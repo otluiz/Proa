@@ -1,0 +1,15 @@
+\frametitle{Cálculos Desafiantes em JavaScript}
+\framesubtitle{Desafio 3: Fatorial}
+
+\begin{verbatim}
+// Desafio: Calcular o fatorial de um número
+const numero = parseInt(prompt("Digite um número inteiro:"));
+
+let fatorial = 1;
+for (let i = 1; i <= numero; i++) {
+  fatorial *= i;
+}
+
+console.log(`Fatorial de ${numero} é ${fatorial}`);
+\end{verbatim}
+

@@ -1,0 +1,5 @@
+\babel@toc {brazil}{}\relax 
+\beamer@sectionintoc {1}{Vetores}{3}{0}{1}
+\beamer@sectionintoc {2}{Exemplos de propriedades}{20}{0}{2}
+\beamer@sectionintoc {3}{Objetos}{31}{0}{3}
+\beamer@sectionintoc {4}{Exemplos de objetos}{33}{0}{4}

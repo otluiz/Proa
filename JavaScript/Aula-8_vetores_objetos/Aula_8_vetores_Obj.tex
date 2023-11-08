@@ -1,0 +1,378 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+%\documentclass[[11pt, xcolor={dvipsnames,svgnames,table},portuguese]{beamer} 
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Lógica de Programação com Java Script}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Vetores}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}
+\frametitle{Arrays e Vetores em JavaScript}
+\begin{itemize}
+  \item<1-> \textbf{Arrays e Vetores} são estruturas de dados usadas para armazenar coleções de elementos em JavaScript.
+  \item<2-> Um \textbf{array} é uma estrutura de dados que pode conter elementos de qualquer tipo, acessados por índices numéricos.
+  \item<3-> Um \textbf{vetor} é um array que possui elementos do mesmo tipo, otimizado para operações matemáticas.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Criando Arrays e Vetores}
+\begin{itemize}
+  \item<1-> Em JavaScript, você pode criar um array usando colchetes: \texttt{let myArray = []}.
+  \item<2-> Para criar um vetor, você pode usar bibliotecas como \texttt{NumPy} em Python ou \texttt{TypedArray} em JavaScript.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Acessando Elementos}
+\begin{itemize}
+  \item<1-> Para acessar um elemento em um array, use a notação de colchetes: \texttt{myArray[0]}.
+  \item<2-> Vetores geralmente possuem operações otimizadas para acessar elementos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Propriedades dos Arrays}
+\begin{itemize}
+  \item<1-> \texttt{length}: Retorna o número de elementos no array.
+  \item<2-> \texttt{push()}: Adiciona um elemento ao final do array.
+  \item<3-> \texttt{pop()}: Remove e retorna o último elemento do array.
+  \item<4-> \texttt{splice()}: Adiciona ou remove elementos em posições específicas.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Outras Propriedades dos Arrays}
+\begin{itemize}
+  \item<1-> \texttt{join()}: Converte os elementos em uma string, separados por um delimitador.
+  \item<2-> \texttt{concat()}: Combina dois ou mais arrays e retorna um novo.
+  \item<3-> \texttt{slice()}: Retorna uma cópia de parte do array, sem modificar o original.
+  \item<4-> \texttt{indexOf()}: Retorna o índice do primeiro elemento correspondente.
+\end{itemize}
+\end{frame}
+%--------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Uma função que mostra os Elementos}
+\begin{verbatim}
+function imprimirArray(arr) {
+  // O código da função vai aqui
+}
+\end{verbatim}
+Chame a função
+\begin{verbatim}
+//cria um vetor
+let meuArray = [1, 2, 3, 4, 5];
+
+// chama a função, passando o array
+imprimirArray(meuArray);
+
+\end{verbatim}
+
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{enfim a função}
+\begin{verbatim}
+function imprimirArray(arr) {
+  // O código da função vai aqui
+}
+\end{verbatim}
+Chame a função
+\begin{verbatim}
+function imprimirArray(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+\end{verbatim}
+
+\end{frame}
+%----------------------------------------------------
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Exemplos de propriedades}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\frametitle{Propriedade \texttt{length}}
+Length: Retorna o tamanho (número de elementos) do array.
+\begin{verbatim}
+let frutas = ["maçã", "banana", "laranja"];
+let tamanho = frutas.length;
+console.log(`O tamanho do array é ${tamanho}`);
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Método \texttt{push()}}
+Push(): Adiciona um ou mais elementos ao final do array
+\begin{verbatim}
+let frutas = ["maçã", "banana"];
+frutas.push("laranja");
+console.log(frutas); // ["maçã", "banana", "laranja"]
+\end{verbatim}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Método \texttt{pop()}}
+Pop(): Remove e retorna o último elemento do array.
+\begin{verbatim}
+let frutas = ["maçã", "banana", "laranja"];
+let ultimaFruta = frutas.pop();
+console.log(ultimaFruta); // "laranja"
+console.log(frutas); // ["maçã", "banana"]
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Método \texttt{splice()}}
+splice(): Este método é usado para alterar o conteúdo de um array, adicionando ou removendo elementos. Ele recebe três argumentos: o índice inicial (onde a operação deve começar), o número de elementos a serem removidos e, opcionalmente, os elementos que devem ser adicionados ao array
+\begin{verbatim}
+let frutas = ["maçã", "banana", "laranja"];
+frutas.splice(1, 1, "uva", "pêra");
+console.log(frutas); // ["maçã", "uva", "pêra", "laranja"]
+\end{verbatim}
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{Método \texttt{join()}}
+Join(): Converte todos os elementos do array em uma única string, separados por um delimitador especificado
+\begin{verbatim}
+let frutas = ["maçã", "banana", "laranja"];
+let texto = frutas.join(", ");
+console.log(texto); // "maçã, banana, laranja"
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Método \texttt{concat()}}
+Concat(): Combina dois ou mais arrays criando um novo array resultante
+\begin{verbatim}
+let frutas1 = ["maçã", "banana"];
+let frutas2 = ["laranja", "uva"];
+let frutasCombinadas = frutas1.concat(frutas2);
+console.log(frutasCombinadas); // ["maçã", "banana", "laranja", "uva"]
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Método \texttt{slice()}}
+slice(): Este método retorna uma parte de um array, definida por um índice inicial e um índice final. Ele não modifica o array original, mas cria um novo array com os elementos selecionados.
+\begin{verbatim}
+let frutas = ["maçã", "banana", "laranja", "uva"];
+let fatia = frutas.slice(1, 3);
+console.log(fatia); // ["banana", "laranja"]
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Método \texttt{indexOf()}}
+IndexOf(): Retorna o primeiro índice em que um elemento especificado pode ser encontrado no array, ou -1 se o elemento não estiver presente
+\begin{verbatim}
+let frutas = ["maçã", "banana", "laranja"];
+let indice = frutas.indexOf("banana");
+console.log(`O índice de "banana" é ${indice}`);
+\end{verbatim}
+\end{frame}
+
+
+
+
+% Slides dos exercícios
+
+\begin{frame}[fragile]
+\frametitle{Exercício 1: Soma dos Elementos}
+\begin{verbatim}
+// Dado um array de números, calcule a soma deles.
+function somaArray(arr) {
+  let soma = 0;
+  for (let i = 0; i < arr.length; i++) {
+    soma += arr[i];
+  }
+  return soma;
+}
+\end{verbatim}
+\end{frame}
+%---------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exercício 2: Encontrar o Maior Elemento}
+\begin{verbatim}
+// Encontre o maior elemento em um array.
+function maiorElemento(arr) {
+  let maior = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > maior) {
+      maior = arr[i];
+    }
+  }
+  return maior;
+}
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercício 3: Filtrar Números Pares}
+\begin{verbatim}
+// Dado um array de números, filtre apenas os números pares.
+function numerosPares(arr) {
+  return arr.filter(numero => numero % 2 === 0);
+}
+\end{verbatim}
+\end{frame}
+
+% Adicione mais slides para os exercícios restantes...
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Objetos}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\frametitle{Objetos}
+Em JavaScript, um objeto é uma coleção de pares chave-valor, onde cada chave (também chamada de propriedade) está associada a um valor. Os objetos são usados para representar estruturas de dados complexas e são uma das principais características da linguagem.
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Objetos}
+Sintaxe: Os objetos são criados usando chaves \{\}. As propriedades e seus valores são definidos dentro das chaves, separados por dois-pontos :. As propriedades são separadas por vírgulas
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Exemplos de objetos}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Exemplo}
+\begin{verbatim}
+let pessoa = {
+  nome: "João",
+  idade: 30,
+  cidade: "São Paulo"
+};
+
+\end{verbatim}
+\end{frame}
+
+%-------------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Exemplo}
+Acesso a Propriedades: Você pode acessar as propriedades de um objeto usando a notação de ponto (objeto.propriedade) ou a notação de colchetes (objeto['propriedade']).
+\begin{verbatim}
+console.log(pessoa.nome); // "João"
+console.log(pessoa['idade']); // 30
+\end{verbatim}
+\end{frame}
+%-------------------------------------------------------------
+
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+%-----------------------------------------------
+
+\end{document}

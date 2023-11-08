@@ -1,0 +1,4 @@
+\babel@toc {brazil}{}
+\beamer@sectionintoc {1}{Entrada de dados}{3}{0}{1}
+\beamer@sectionintoc {2}{Variáveis e Constantes em JavaScript}{7}{0}{2}
+\beamer@sectionintoc {3}{Calculos com um pouco de desafios}{8}{0}{3}

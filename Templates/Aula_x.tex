@@ -1,0 +1,183 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+%\documentclass[[11pt, xcolor={dvipsnames,svgnames,table},portuguese]{beamer} 
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Lógica de Programação com Java Script}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+
+%+++++++++++++++++++++++ Telas iniciais  ---------------------------------
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------------------
+\begin{frame}
+\frametitle{Minha Imagem}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{Figuras/react1.png}
+\caption{Componentes React}
+\end{figure}
+\end{frame}
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Entrada de dados}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Introdução a Lógica de Programação com Java Script}
+\framesubtitle{ Entrada de dados em Java Script}
+	\begin{block}{Leitura de dados através de prompt}
+		\begin{itemize}
+		  \item[a.] O Java Script trata a entrada de dados como tipo texto (string)
+		  \pause
+		  \item[b.] Uma maneira de converter os dados a entrada em número: parseInt()
+		   \pause		  
+		  \item[c.] A função também trata se os dados não forem numéricos: (NaN)
+		  \pause
+		  \item[d.] Dessa forma, mostrada acima, a entrada de dados já tem um tratamento especial
+		\end{itemize}
+	\end{block} 
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Funções Especiais}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Cálculos em JavaScript}
+\framesubtitle{Usando Funções de Entrada}
+
+\begin{verbatim}
+// Exemplo 1: Soma de Dois Números
+const num1 = parseFloat(prompt("Digite o primeiro número:"));
+const num2 = parseFloat(prompt("Digite o segundo número:"));
+const soma = num1 + num2;
+console.log("A soma é:", soma);
+\end{verbatim}
+Como se executa (rodar) esse código?
+\end{frame}
+%-------------------------------------------------------------
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Calculos com }
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+%-------------------------------------------------------------
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Calculos com }
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+%-------------------------------------------------------------
+
+%-------------------------------------------------------------
+
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+%-----------------------------------------------
+
+\end{document}

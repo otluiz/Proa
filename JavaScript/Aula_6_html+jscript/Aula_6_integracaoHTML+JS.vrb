@@ -1,0 +1,24 @@
+\frametitle{Controle de Foco por Ação - tudo em uma coluna}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{verbatim}
+  <div class="column">
+    <button onclick="definirFoco('input1')">Preencher Campo 1</button>
+    <input type="text" id="input1" placeholder="Campo 1"><br><br>
+    <button onclick="definirFoco('input2')">Preencher Campo 2</button>
+    <input type="text" id="input2" placeholder="Campo 2">
+  </div>
+
+  <script>
+    function definirFoco(elementId) {
+      document.getElementById(elementId).focus();
+    }
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\column{0.5\textwidth}
+\end{columns}
+

@@ -1,0 +1,19 @@
+\frametitle{Exemplo de Cálculo de Juros Simples - JavaScript}
+
+\begin{verbatim}
+// Dados finais
+// Verificação do resultado
+let resultado = "";
+if (saldoFinal > 0) {
+  resultado = "Lucro! ganhou dinheiro";
+} else if (saldoFinal < 0) {
+  resultado = "Prejuízo! perdeu dinheiro";
+} else {
+  resultado = "Equilíbrio! Zero de saldo final";
+}
+
+// Exibir o resultado
+console.log(resultado);
+
+\end{verbatim}
+

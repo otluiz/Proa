@@ -1,0 +1,4 @@
+\babel@toc {brazil}{}\relax 
+\beamer@sectionintoc {1}{O ambiente React}{3}{0}{1}
+\beamer@sectionintoc {2}{Componentes}{7}{0}{2}
+\beamer@sectionintoc {3}{Estado Interno de um componente}{14}{0}{3}

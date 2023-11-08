@@ -1,0 +1,24 @@
+\frametitle{Exemplo}
+\framesubtitle{App.js}
+\begin{lstlisting}[language=JavaScript]
+import App.js
+// configurar o react browser route
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+//paginas
+import {Home} from './paginas/Home';
+import {Sobre} from './paginas/Sobre';
+
+const App = () => {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+		  <Route path="/" element={<Home />} />
+		  <Route path="/sobre" element={<Sobre />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+\end{lstlisting}
+

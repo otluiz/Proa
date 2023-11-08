@@ -1,0 +1,3 @@
+\babel@toc {brazil}{}\relax 
+\beamer@sectionintoc {1}{Configuração Inicial}{5}{0}{1}
+\beamer@sectionintoc {2}{Linguagens de um Banco de Dados}{6}{0}{2}

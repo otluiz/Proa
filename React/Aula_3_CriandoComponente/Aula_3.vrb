@@ -1,0 +1,22 @@
+\frametitle{Um exemplo prático de JSX}
+Ajuste na 1ª função (que tem componente2..)
+
+\begin{verbatim}
+      .. contunuação ...
+          Componente 2
+        </li>
+      </ul>
+      {activeComponent === 'Componente 1' && (
+        <div>
+          <h2>Componente 1</h2>
+          <p>Este é o Componente 1. Clique em "Componente 1" para vê-lo em ação.</p>
+        </div>
+      )}
+      {activeComponent === 'Componente 2' && (
+        <div>
+          <h2>Componente 2</h2>
+          <p>Este é o Componente 2. Clique em "Componente 2" para vê-lo em ação.</p>
+        </div>
+      )}
+    </div> ); }  export default App;
+\end{verbatim}

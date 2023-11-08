@@ -1,0 +1,163 @@
+﻿Comando JS par criar um projeto
+
+
+    1. Criar sua pasta do projeto
+    2. Entrar na pasta do seu projeto
+    3. Dar o comando para criar um projeto React
+       
+    npx create-react-app seu-app
+       
+    4. Foram criadas várias pastas de um projeto em React
+       
+    5. Iniciar a aplicação
+
+    npm start
+       
+    6. Um componente padrão foi criado (http://localhost:3000)
+       
+    7. Na pasta src poderá criar sua pasta componente (ex: $mkdir componente) 
+
+    8. Entrar nessa pasta com o comando cd componente (no VSCode)
+
+    9. Criar o arquivo NovoComponente.js (no VSCode)
+
+    11. Um componente possui (ao menos)
+
+    	a) Um comando import, tipo: import React from ‘react’
+    	b) Uma função que vai definir o componente ex: 
+		function MeuComponente() { 
+			…
+		} 
+    	c) Dentro dessa função deve ter uma tag: <div> … </div> e um return
+       	function MeuComponente() {
+		    return( <div> … </div> );
+       	}
+
+    d) Um comando export, tipo: export default MeuComponente;
+
+
+    e) Exemplo completo:
+
+	import React from 'react';
+
+	function MeuComponente() {
+  		return (
+    			<div>
+      			Meu componente
+    			</div>
+  		);
+	}
+
+	export default MeuComponente;
+
+
+
+
+
+
+ 
+
+
+
+//
+// Aula de hoje
+//
+
+1) // Instale o React Router DOM com o comando: npm i react-router-dom
+
+2) Crie as duas páginas na pasta “paginas” como compnentes React (use: rafce – mais rápido)
+
+3) em App.js faça o import {BrowserRouter, Routes, Route, Router, Link} from "react-router-dom"
+
+4) App.js
+/////////////////////////////////////////////////////////////////////////
+import './App.css';
+import {BrowserRouter, Routes, Route, Router, Link} from "react-router-dom"
+
+//paginas
+import Home from ‘./paginas/Home’;
+import Sobre from ‘./paginas/Sobre’;
+
+const App = () => {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+	<ul>
+	   <li>
+ 	     <Link to="/">Home</Link>
+	  </li>
+	  <li>
+	     <Link to="/sobre">Sobre</Link>
+	  </li>
+	  </ul>
+
+	<Route path="/" element={<Home />} />
+	<Route path="/sobre" element={<Sobre />} />
+
+
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+///////////////////////////////////////////////////////
+
+// Alterar o componente HookuseState para testar a mudança de variável no useSate
+// Observar como funciona a renderização
+import {useState} from 'react'
+
+const HookuseState = () => {
+   // 1
+    let nomeUsuario = "Marquinhos";
+
+    const [nome, setNome] = useState("Othon");
+
+    const mudaNome = () => {
+        nomeUsuario = "Thiago";
+        setNome("Thiago não é Marcos");
+
+        console.log(nomeUsuario);
+        console.log(nome);
+
+    }
+  return (<div>
+
+    <h2>useState</h2>
+        <p>Variável: {nomeUsuario}</p>
+        <p>useState: {nome}</p>
+        <button onClick={mudaNome}>Mudar nome</button>
+  </div>)
+}
+
+export default HookuseState
+
+/////////////////////////////////////////////////////
+/// componente useEffect
+import {useEffect, useState} from 'react'
+
+const HookuseEffect = () => {
+  useEffect(() => {
+    console.log("Sendo executado")
+  });
+
+  const [numero, setNumero] = useState(1);
+
+  const mudaAlgumaCoisa = () => {
+         setNumero(numero + 1);
+    
+  }
+  return (
+    <div>
+
+        <h2>useEffect</h2>
+        <p>Numero: {numero}</p>
+        <button onClick={mudaAlgumaCoisa}>MUda alguma coisa</button>
+        <hr />
+
+    </div>
+  )
+}
+
+export default HookuseEffect

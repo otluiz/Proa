@@ -1,0 +1,453 @@
+
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+%\documentclass[[11pt, xcolor={dvipsnames,svgnames,table},portuguese]{beamer} 
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Introdução às funções externas Java Script}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Entrada de dados externo}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}
+  \frametitle{O conceito de \textbf{Módulo} em JavaScript}
+  Em JavaScript, um módulo é um arquivo que encapsula e organiza funcionalidades relacionadas. Ele pode conter variáveis, funções, classes e outros elementos. Através do \texttt{import}, você pode acessar esses elementos de outros arquivos.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Exemplo 1: Importar uma função específica de um módulo}
+  Suponha que você tenha um módulo \texttt{meuModulo.js}:
+  \begin{verbatim}
+    // meuModulo.js
+    export function minhaFuncao() {
+      console.log("Executando minha função!");
+    }
+  \end{verbatim}
+  
+  No seu arquivo principal:
+  \begin{verbatim}
+    // Arquivo principal
+    import { minhaFuncao } from './meuModulo';
+    minhaFuncao();
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Exemplo 2: Importar várias funcionalidades de um módulo}
+  No módulo \texttt{meuModulo.js}:
+  \begin{verbatim}
+    // meuModulo.js
+    export function funcao1() { /* ... */ }
+    export function funcao2() { /* ... */ }
+    export function funcao3() { /* ... */ }
+  \end{verbatim}
+  
+  No seu arquivo principal:
+  \begin{verbatim}
+    // Arquivo principal
+    import { funcao1, funcao2, funcao3 } from './meuModulo';
+    funcao1();
+    funcao2();
+    funcao3();
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Exemplo 3: Importar todo o módulo para usar suas funcionalidades}
+  No módulo \texttt{meuModulo.js}:
+  \begin{verbatim}
+    // meuModulo.js
+    export function minhaFuncao() { /* ... */ }
+    export function outraFuncao() { /* ... */ }
+  \end{verbatim}
+  
+  No seu arquivo principal:
+  \begin{verbatim}
+    // Arquivo principal
+    import * as meuModulo from './meuModulo';
+    meuModulo.minhaFuncao();
+    meuModulo.outraFuncao();
+  \end{verbatim}
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Chamando Função JavaScript de um Arquivo Externo}
+
+  Considere a estrutura de pastas:
+
+  \begin{verbatim}
+    projeto/
+    |-- index.html
+    |-- js/
+        |-- funcoes.js
+  
+  \end{verbatim}
+
+  No arquivo \texttt{funcoes.js} (dentro da pasta \texttt{js/}):
+
+  \begin{verbatim}
+    // funcoes.js
+    function mostrarMensagem() {
+      alert("Função chamada!");
+    }
+  \end{verbatim}
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Chamando Função JavaScript de um Arquivo Externo}
+
+  No arquivo \texttt{index.html}:
+
+  \begin{verbatim}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Chamando Função JavaScript</title>
+      <script src="js/funcoes.js"></script>
+    </head>
+    <body>
+      <button onclick="mostrarMensagem()">Clique-me</button>
+    </body>
+    </html>
+  \end{verbatim}
+  Ao clicar no botão, a função \texttt{mostrarMensagem()} do arquivo \texttt{funcoes.js} será chamada.
+\end{frame}
+%----------------------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Importação e Exportação de Funções}
+
+  Considere a estrutura de pastas:
+
+  \begin{verbatim}
+    projeto/
+    |-- index.html
+    |-- js/
+        |-- funcoes.js
+        |-- modulo.js
+
+  \end{verbatim}
+
+  No arquivo \texttt{modulo.js} (dentro da pasta \texttt{js/}):
+
+  \begin{verbatim}
+    // modulo.js
+    export function mostrarMensagem() {
+      alert("Função chamada!");
+    }
+  \end{verbatim}
+\end{frame}
+%-----------------------------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Exemplo: Importação e Exportação de Funções}
+
+  No arquivo \texttt{funcoes.js} (dentro da pasta \texttt{js/}):
+
+  \begin{verbatim}
+    // funcoes.js
+    import { mostrarMensagem } from './modulo.js';
+    
+    export function outraFuncao() {
+      console.log("Outra função chamada!");
+      mostrarMensagem();
+    }
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Exemplo: Importação e Exportação de Funções}
+
+  No arquivo \texttt{index.html}:
+
+  \begin{verbatim}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">\\
+      
+      <title>Chamando Função JavaScript</title>
+      <script type="module" src="js/funcoes.js"></script>
+    </head>
+    <body>
+      <button onclick="outraFuncao()">Clique-me</button>
+    </body>
+    </html>
+  \end{verbatim}
+  Ao clicar no botão, a função \texttt{outraFuncao()} do arquivo \texttt{funcoes.js} será chamada, e ela por sua vez chamará a função \texttt{mostrarMensagem()} do arquivo \texttt{modulo.js}.
+\end{frame}
+%----------------------------------------------------------------
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Desafio}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Exercícios de Estruturas de Repetição}
+
+\textbf{Exercício 1:} Imprima os números de 1 a 10.
+
+\textbf{Exercício 2:} Imprima os números pares de 2 a 20.
+
+\textbf{Exercício 3:} Calcule a soma dos números de 1 a 100.
+
+\textbf{Exercício 4:} Imprima a tabuada do 5 (de 1 a 10).
+
+\textbf{Exercício 5:} Conte quantas vogais há em uma palavra.
+
+\textbf{Exercício 6:} Peça ao usuário um número e imprima os números de 1 até esse número.
+
+\textbf{Exercício 7:} Peça ao usuário para digitar números até que ele digite zero. Imprima a soma dos números.
+
+\textbf{Exercício 8:} Peça ao usuário para adivinhar um número entre 1 e 10. Continue pedindo até ele acertar.
+
+\textbf{Exercício 9:} Peça ao usuário para digitar 5 números e imprima a média deles (utilize estrutura de repetição).
+
+\textbf{Exercício 10:} Peça ao usuário para digitar um número e calcule seu fatorial.
+
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exemplo de formulário para apresentação da solução}
+
+\begin{verbatim}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercício 1</title>
+  <script src="../scripts/script.js"></script>
+</head>
+<body>
+  <h1>Exercício 1</h1>
+  <button onclick="exercicio1()">Clique para Executar</button>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exemplo de formulário para apresentação da solução}
+
+\begin{verbatim}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercício 1</title>
+  <script src="./script.js"></script>
+</head>
+<body>
+  <h1>Exercício 1</h1>
+  <button onclick="exercicio1()">Clique para Executar</button>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}
+\frametitle{Resolva os exercícios que abordam o uso de funções e estrutura de repetição}
+
+\begin{itemize}
+	\item[1.] \textbf{Soma dos número pares:} Crie uma função que receba um número inteiro positivo como parâmetro e retorne a soma de todos os números pares de 1 até esse número
+	\item[2.] \textbf{Sequência de Fibonacci:} Crie uma função que gere e retorne os primeiros n números da sequência de Fibonacci. A sequência começa com 0 e 1, e cada número subsequente é a soma dos dois números anteriores.
+	\item[3.] \textbf{Contagem de dígitos:} Crie uma função que conte e retorne quantos dígitos um número inteiro possui. Por exemplo, o número 12345 possui 5 dígitos.
+	\item[4.] \textbf{Soma de dígitos:} Crie uma função que some os dígitos de um número e verifique se ele é divisível por 3
+\end{itemize}
+
+\end{frame}
+%%-------------------------------------------------------------
+%\begin{frame}[fragile]
+%\frametitle{Exemplo de Uso da Média Aritmética}
+%Vamos calcular a média aritmética de um conjunto de valores.
+%\begin{verbatim}
+%Vamos calcular a média aritmética dos valores 10, 15, 20, 25 e 30.
+%
+%\begin{verbatim}
+%const valor1 = 10, valor2 = 15, valor3 = 20;
+%const valor4 = 25, valor5 = 30;
+%
+%const soma = valor1 + valor2 + valor3 + valor4 + valor5;
+%const quantidade = 5;
+%const media = soma / quantidade;
+%
+%console.log("Soma:", soma);
+%console.log("Média Aritmética:", media);
+%
+%\end{verbatim}
+%Pergunta: Onde deverei "colar" esse código, para que funcione
+%do jeito que está?
+%\end{frame}
+%
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+%\section{Calculos com mais um pouco de desafios}
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+%\begin{frame}
+%\frametitle{Apresentando a Média Ponderada}
+%A média ponderada é uma medida de centralidade que leva em consideração diferentes pesos atribuídos a cada valor no cálculo da média.
+%\vspace{0.5cm}
+%Para calcular a média ponderada:
+%
+%\begin{enumerate}
+%\item Multiplique cada valor pelo seu respectivo peso.
+%\item Some os produtos obtidos.
+%\item Divida a soma pelo total dos pesos.
+%\end{enumerate}
+%
+%\vspace{0.5cm}
+%
+%Isso é expresso pela fórmula:
+%\[
+%\text{Média Ponderada} = \frac{v_1 \cdot p_1 + v_2 \cdot p_2 + v_3 \cdot p_3 + \ldots}{p_1 + p_2 + p_3 + \ldots}
+%\]
+%onde $v_i$ é cada valor individual do conjunto e $p_i$ é o peso correspondente a esse valor.
+%
+%\end{frame}
+%-------------------------------------------------------------
+%\begin{frame}[fragile]
+%\frametitle{Exemplo de Cálculo de Juros Simples}
+%
+%Aqui está um exemplo de cálculo de juros simples em HTML:
+%
+%\begin{verbatim}
+%<!DOCTYPE html>
+%<html>
+%<head> <title>Cálculo de Juros Simples</title> </head>
+%<body>
+%  <h1>Calculadora de Juros Simples</h1>
+%  <script>
+%    const principal = 5000;
+%    const taxaDeJuros = 10; // 10%
+%    const periodo = 2;
+%    const montante = principal + (principal * taxaDeJuros / 100 * periodo);
+%    const resultado = `Montante com Juros Simples: $${montante.toFixed(2)}`;
+%    document.write(resultado);
+%  </script>
+%</body>
+%</html>
+%\end{verbatim}
+%
+%\end{frame}
+%%-------------------------------------------------------------
+%\begin{frame}[fragile]
+%\frametitle{Exemplo de Cálculo de Juros Simples}
+%Aqui está um exemplo de cálculo de juros simples em HTML com prompts de comando:
+%
+%\begin{verbatim}
+%<!DOCTYPE html>
+%<html><head>
+%  <title>Cálculo de Juros Simples</title></head>
+%<body>
+%  <h1>Calculadora de Juros Simples</h1>
+%  <script>
+%    const principal = parseFloat(prompt("Digite o valor principal:"));
+%    const taxaDeJuros = parseFloat(prompt("Digite a taxa de juros (%):"));
+%    const periodo = parseFloat(prompt("Digite o período (anos):"));
+%    const montante = principal + (principal * taxaDeJuros / 100 * periodo);
+%    const resultado = `Montante com Juros Simples: $${montante.toFixed(2)}`;
+%    document.write(resultado);
+%  </script>
+%</body>
+%</html>
+%\end{verbatim}
+%
+%\end{frame}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+%-----------------------------------------------
+
+\end{document}

@@ -1,0 +1,5 @@
+\babel@toc {brazil}{}\relax 
+\beamer@sectionintoc {1}{Apresentação}{3}{0}{1}
+\beamer@sectionintoc {2}{Introdução}{9}{0}{2}
+\beamer@sectionintoc {3}{Operadores lógicos}{20}{0}{3}
+\beamer@sectionintoc {4}{Estruturas de decisão}{29}{0}{4}

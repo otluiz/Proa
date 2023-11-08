@@ -1,0 +1,302 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+%\documentclass[[11pt, xcolor={dvipsnames,svgnames,table},portuguese]{beamer} 
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Lógica de Programação com Java Script}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Entrada de dados}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Codando}
+\framesubtitle{Introdução a Lógica de Programação com Java Script}
+	\begin{block}{Leitura de dados através de prompt}
+		\begin{itemize}
+		  \item[a.] O Java Script trata a entrada de dados como tipo texto (string)
+		  \pause
+		  \item[b.] Uma maneira de converter os dados a entrada em número parseInt()
+		   \pause		  
+		  \item[c.] Essa função também trata se os dados não forem numéricos (NaN)
+		  \pause
+		  \item[d.] Dessa forma a entrada de dados já tem um tratamento 
+		\end{itemize}
+	\end{block} 
+\end{frame}
+
+
+\begin{frame}
+\frametitle{JavaScript}
+\framesubtitle{Introdução}
+
+As funções parseInt() e parseFloat() são usadas para converter strings em valores numéricos, mas com algumas diferenças importantes.\\
+ Além dessas, existem outras funções que também podem ser usadas para converter valores ou realizar outras operações.\\ 
+ Vamos entender quando usar parseInt, parseFloat e outras funções relevantes:
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Funções Especiais}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\end{frame}
+
+\begin{frame}
+\frametitle{parseInt() - Conversão para Inteiro:}
+\begin{itemize}
+  \item Use parseInt() quando você quiser converter uma string em um valor inteiro
+  \item Qualquer parte da string que não seja um número será ignorada
+  \item Exemplo: parseInt("123") retorna 123
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{parseFloat() - Conversão para Ponto Flutuante:}
+\begin{itemize}
+  \item Use parseFloat() quando você quiser converter uma string em um valor de ponto flutuante.
+  \item Essa função lida com números decimais.
+  \item Exemplo: parseFloat("3.14") retorna 3.14
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Number() - Conversão Genérica:}
+
+\begin{itemize}
+  \item A função Number() pode ser usada para converter tanto para inteiro quanto para ponto flutuante.
+  \item Ela lida bem com números decimais e números em notação científica.
+  \item Exemplo: Number("42") retorna 42, Number("3.14") retorna 3.14.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{isNaN() - Verificação de NaN:}
+
+\begin{itemize}
+  \item `isNaN()` verifica se um valor é NaN (Not-a-Number).
+  \item Pode ser usado para validar se uma conversão de string para número foi bem-sucedida.
+  \item Exemplo: isNaN(parseInt("abc")) retorna true.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{toFixed() - Arredondamento Decimal:}
+\begin{itemize}
+  \item A função toFixed() é usada para arredondar um número para um número específico de casas decimais.
+  \item Exemplo: const numero = 3.14159; numero.toFixed(2) retorna "3.14".
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Math.floor() e Math.ceil() - Arredondamento para Baixo/Cima:}
+
+\begin{itemize}
+  \item Math.floor() arredonda um número para baixo para o inteiro mais próximo.
+  \item Math.ceil() arredonda um número para cima para o inteiro mais próximo.
+  \item Exemplo: Math.floor(4.8) retorna 4, Math.ceil(4.2) retorna 5.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Math.random() - Geração de Números Aleatórios:}
+\begin{itemize}
+  \item Math.random() gera um número decimal aleatório entre 0 (inclusive) e 1 (exclusivo).
+  \item Pode ser usado com outros métodos matemáticos para gerar números aleatórios em faixas específicas.
+  \item Exemplo: Math.random() retorna um número aleatório entre 0 e 1.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Cálculos em JavaScript}
+\framesubtitle{Usando Funções de Entrada}
+
+\begin{verbatim}
+// Exemplo 1: Soma de Dois Números
+const num1 = parseFloat(prompt("Digite o primeiro número:"));
+const num2 = parseFloat(prompt("Digite o segundo número:"));
+const soma = num1 + num2;
+console.log("A soma é:", soma);
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\begin{verbatim}
+// Exemplo 3: Multiplicação de Números
+const num1 = parseFloat(prompt("Digite o primeiro número:"));
+const num2 = parseFloat(prompt("Digite o segundo número:"));
+const multiplicacao = num1 * num2;
+console.log("A multiplicação é:", multiplicacao);
+\end{verbatim}
+
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Calculos com um pouco mais desafio}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Cálculos Desafiantes em JavaScript}
+\framesubtitle{Desafio 1: Média Ponderada}
+
+\begin{verbatim}
+// Desafio: Calcular média ponderada de notas
+const nota1 = parseFloat(prompt("Digite a nota 1:"));
+const peso1 = parseFloat(prompt("Digite o peso da nota 1:"));
+const nota2 = parseFloat(prompt("Digite a nota 2:"));
+const peso2 = parseFloat(prompt("Digite o peso da nota 2:"));
+
+const mediaPonderada = (nota1 * peso1 + nota2 * peso2) / (peso1 + peso2);
+console.log("Média ponderada:", mediaPonderada);
+\end{verbatim}
+
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\frametitle{Cálculos Desafiantes em JavaScript}
+\framesubtitle{Desafio 2: Juros Compostos}
+
+\begin{verbatim}
+// Desafio: Calcular montante com juros compostos
+const principal=parseFloat(prompt("Digite o valor principal:"));
+const taxaDeJuros=parseFloat(prompt("Digite a taxa de juros (%):"));
+const anos = parseInt(prompt("Digite o número de anos:"));
+
+const montante = principal * Math.pow(1 + taxaDeJuros / 100, anos);
+console.log("Montante com juros compostos:", montante.toFixed(2));
+\end{verbatim}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Cálculos Desafiantes em JavaScript}
+\framesubtitle{Desafio 3: Fatorial}
+
+\begin{verbatim}
+// Desafio: Calcular o fatorial de um número
+const numero = parseInt(prompt("Digite um número inteiro:"));
+
+let fatorial = 1;
+for (let i = 1; i <= numero; i++) {
+  fatorial *= i;
+}
+
+console.log(`Fatorial de ${numero} é ${fatorial}`);
+\end{verbatim}
+
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+%-----------------------------------------------
+
+\end{document}

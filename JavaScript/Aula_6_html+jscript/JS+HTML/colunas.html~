@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+  <style>
+    .column {
+      float: left;
+      width: 50%;
+    }
+    .clear {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <h1>Controle de Foco por Ação</h1>
+  
+  <div class="column">
+    <button onclick="definirFoco('input1')">Preencher Campo 1</button>
+    <input type="text" id="input1" placeholder="Campo 1">
+  </div>
+  
+  <div class="column">
+    <button onclick="definirFoco('input2')">Preencher Campo 2</button>
+    <input type="text" id="input2" placeholder="Campo 2">
+  </div>
+
+  <script>
+    function definirFoco(elementId) {
+      document.getElementById(elementId).focus();
+    }
+  </script>
+</body>
+</html>

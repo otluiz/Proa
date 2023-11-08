@@ -1,0 +1,338 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+
+\usetheme{CambridgeUS}
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+% here you should include other packages with \usepackage
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Introdução ao React.JS}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Minha Imagem}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{Figuras/react1.png}
+\caption{Componentes React}
+\end{figure}
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Respondendo a eventos no React}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{O que são eventos?}
+\framesubtitle{Um simples click no botão}
+	\begin{block}{Handle event}
+       Você pode responder a eventos declarando funções de manipulador de eventos (handle event) dentro de seus componentes:
+	\end{block}	
+	
+\end{frame}
+
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\section{Ganchos ou Hooks?}
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{O que é um Hook?}
+\framesubtitle{Traduzindo ao pé da letra o termo}
+	\begin{block}{Gancho}
+       Hook: Um dispositivo curvado, metálico, na forma de um gancho;
+       Hook também pode ser um termo usado nas lutas de boxe, gancho de esquerda (ou direita): a left/rigth hook
+	\end{block}
+\pause
+	\begin{block}{Hook em React}
+       Os hooks (ganchos) em React são funções que permitem "conectar-se" ao estado do React e aos recursos do ciclo de vida a partir de componentes.
+	\end{block}
+\pause
+\begin{figure}
+%\centering
+\includegraphics[width=0.13\textwidth]{Figuras/hookCaptain.png}
+\caption{A volta do Capitão Gancho}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Tipos de hooks}
+\framesubtitle{Existem dois tipos principais}
+	\begin{block}{useState }
+       Este hook (gancho) permite adicionar estado aos seus componentes funcionais. Ele pega um valor de estado inicial e retorna um array com o valor do estado atual e uma função para atualizar o estado.
+	\end{block}	
+	\pause
+	\begin{block}{useEffect }
+       Este gancho permite que você execute efeitos ``colaterais'', como busca de dados, quando seu componente é montado ou atualizado.
+	\end{block}		
+	
+\end{frame}
+%---------------------------------------------------------
+
+%---------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Quem são os manipuladores?}
+\framesubtitle{[``algumaCoisa'', ``setAlgumaCoisa'']}
+
+Na primeira vez que o botão for exibido, a contagem será 0 porque você passou 0 para useState(). Quando você quiser mudar de estado, chame setContar() e passe o novo valor para ele. Clicar neste botão aumentará o contador:
+
+
+\begin{lstlisting}[language=JavaScript]
+function MeuBotao() {
+  const [contar, setContar] = useState(0);
+  
+  function manipulaClick() {
+    // ...
+  }
+}
+\end{lstlisting}
+
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Adicionando ``estado''}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Mundando o estado de um componente}
+\framesubtitle{Olhando com mais detalhe o useState(0)}
+
+Na primeira vez que o botão for exibido, a contagem será 0 porque você passou 0 para useState(). Quando você quiser mudar de estado, chame setContar() e passe o novo valor para ele. Clicar neste botão aumentará o contador:
+\begin{lstlisting}[language=JavaScript]
+function MeuBotao() {
+  const [contar, setContar] = useState(0); // zera o contador
+
+  function manipulaClick() {
+    setContar(contar + 1); //atualiza o contador "contar"
+  }
+
+  return (
+    <button onClick={manipulaClick}> // chama a funcao
+      Clicou {contar} vezes 
+      // apos clicar a const contar sera setada (atualizada)
+    </button>
+  );
+}
+\end{lstlisting}
+
+\end{frame}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Classes em JS e React}
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Classes}
+\framesubtitle{O que seria?}
+
+%\begin{lstlisting}[language=JavaScript]
+\begin{verbatim}
+class Carro {
+  constructor(marca, modelo) {
+    this.marca = marca;
+    this.modelo = modelo;
+  }
+
+  getInfo() {
+    return '${this.marca} ${this.modelo}';
+  }
+}
+
+const meuCarro = new Carro('Toyota', 'Corolla');
+console.log(meuCarro.getInfo()); // Saída: Toyota Corolla
+
+\end{verbatim}
+
+%\end{lstlisting}
+
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Classes}
+\framesubtitle{O que seria?}
+
+\begin{verbatim}
+class CarroEsportivo extends Carro {
+  constructor(marca, modelo, velocidadeMax) {
+    super(marca, modelo);
+    this.velocidadeMax = velocidadeMax;
+  }
+
+  getInfo() {
+    return `${super.getInfo()} - Velocidade Máxima: ${this.velocidadeMax} km/h`;
+  }
+}
+
+const meuCarroEsportivo = new CarroEsportivo('Ferrari', '458 Italia', 340);
+console.log(meuCarroEsportivo.getInfo()); // Saída: Ferrari 458 Italia - Velocidade Máxima: 340 km/h
+
+\end{verbatim}
+
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++%
+\section{Estudando a mudança de estados dos Hooks}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Se não existissem os hooks, como seria?}
+\framesubtitle{Ahh, ``saudade dos hooks'' !!}
+\begin{lstlisting}[language=JavaScript]
+
+class Treinamento extends React.Component {
+  constructor(props) { // Detalhes no arquivo comandos.txt
+    super(props);
+    this.state = {         // Estado inicial
+      nome: 'Treinamento' // propriedade "nome" inicializada 
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <p>{this.state.nome}</p> {/* Exibe o valor da propriedade "nome" do estado */}
+        <button onClick={() => this.setState({ nome: 'React' })}>CLICK</button>
+      </div>
+    );
+  }
+}
+\end{lstlisting}
+
+\end{frame}
+
+%-------------------------------------------------------------
+\begin{frame}
+\frametitle{Explicando a classe "Treinamento"}
+\begin{itemize}
+ \item[1] class Treinamento extends React.Component { ... }: Define uma classe chamada Treinamento que estende a classe React.Component.
+ \item[2] constructor(props) { ... }: O método constructor é um método especial chamado quando um objeto é criado com a classe. Ele inicializa o estado do componente. Neste caso, a propriedade nome é inicializada como 'Treinamento'.
+ \item[3] $<p>{this.state.nome}</p>$: Exibe o valor da propriedade nome do estado. No início, isso será 'Treinamento'.
+ 
+ \item[4] $<button onClick={() => this.setState({ nome: ''React''´ })}>CLICK</button>$: Quando o botão é clicado, ele chama a função setState (método encapsulado), que atualiza a propriedade nome do estado para 'React'. Após clicar no botão, o parágrafo será atualizado para mostrar 'React' em vez de 'Treinamento'.
+\end{itemize}
+\end{frame}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\frametitle{Usando Hooks ao invés de classes}
+\framesubtitle{Seja o seguinte componente hook do exemplo anterior}
+
+\begin{lstlisting}[language=JavaScript]
+import React, { useState } from 'react';
+
+const Treinamento = () => {
+  const [nome, setNome] = useState('Treinamento'); // Inicializa o estado com 'Treinamento'
+
+  return (
+    <div>
+      <p>{nome}</p> {/* Exibe o valor do estado 'nome' */}
+      <button onClick={() => setNome('React')}>CLICK</button> {/* Atualiza o estado 'nome' para 'React' quando o botao eh clicado */}
+    </div>
+  );
+};
+
+export default Treinamento;
+\end{lstlisting}
+
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+%-----------------------------------------------
+
+\end{document}

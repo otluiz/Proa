@@ -1,0 +1,449 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+%\documentclass[[11pt, xcolor={dvipsnames,svgnames,table},portuguese]{beamer} 
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Lógica de Programação com Java Script}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Interação HTML X JAVA SCRIPT}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}
+\frametitle{Integração entre HTML e JavaScript}
+
+\begin{itemize}
+  \item Botão Simples
+  \item Funções Simples
+  \item Interação Complexa
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Botão Simples}
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Clique no botão</h1>
+  <button onclick="mostrarMensagem()">Clique aqui</button>
+
+  <script>
+    function mostrarMensagem() {
+      alert("Você clicou no botão!");
+    }
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+
+
+% Slides para as demais funções (3 a 11) continuam aqui...
+%-----------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Encapsular as Funções JavaScript no HTML}
+
+\begin{itemize}
+  \item Exercício 1: Somar Dois Números
+  \item Exercício 2: Verificar Número Par
+  \item Exercício 3: Calcular Média
+  \item Exercício 4: Converter Polegadas para Centímetros
+  \item Exercício 5: Verificar Triângulo
+  \item Exercício 6: Calcular Área do Triângulo
+  \item Exercício 7: Verificar Maior Número
+  \item Exercício 8: Calcular Desconto
+  \item Exercício 9: Verificar Número Primo
+  \item Exercício 10: Calcular Fatorial
+\end{itemize}
+
+\end{frame}
+%-----------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exercício 1: Função Somar Dois Números}
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Função Somar Dois Números</h1>
+  <button onclick="somarNumeros()">Somar</button>
+
+  <script>
+    function somarNumeros() {
+      const num1 = parseFloat(prompt("Digite o primeiro número:"));
+      const num2 = parseFloat(prompt("Digite o segundo número:"));
+      const resultado = num1 + num2;
+      alert(`A soma é: ${resultado}`);
+    }
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercício 2: Função par ou impar}
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Função Par ou Ímpar</h1>
+  <button onclick="parImpar()">Testar</button>
+
+  <script>
+    function parImpar() {
+      const num1 = parseFloat(prompt("Digite o primeiro número:"));
+	  if(num1 % 2 == 0){
+      	alert(`É par o número: ${num1}`);
+      else{
+      	alert(`É ímpar o número: ${num1}`);};
+    }
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Funções como Parte de Expressões - SUGESTÃO}
+Função sem nome
+\begin{verbatim}
+const saudacao = function(nome) {
+  return `Olá, ${nome}!`;
+};
+
+const mensagem = saudacao("Eva");
+console.log(mensagem); // Saída: Olá, Eva!
+\end{verbatim}
+
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Encapsulando a função anterior - SUGESTÃO}
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Mostrar mensagem de saudação</h1>
+  <!-- Adicione um campo de entrada de texto -->
+  <input type="text" id="nome">
+  <button onclick="exibirSaudacao()">Saudação</button>
+
+  <script>
+    const saudacao = function(nome) {
+      return `Olá, ${nome}!`;
+    };
+\end{verbatim}
+
+\end{frame}
+%-----------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Encapsulando a função anterior - SUGESTÃO}
+
+\begin{verbatim}
+
+    // Função para exibir a saudação com base no valor do campo de entrada
+    function exibirSaudacao() {
+      const nome = document.getElementById("nome").value;
+      const mensagem = saudacao(nome);
+      alert(mensagem); // Exibir a mensagem em um alerta
+    }
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+
+%--------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Mudando estilos com a tab style}
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de CSS com a tag style</title>
+  <style>
+    /* Definição de estilos */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      color: blue;
+    }
+ 
+\end{verbatim}
+
+\end{frame}
+%-------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Mudando estilos com a tab style}
+
+\begin{verbatim}
+
+    p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Título da Página</h1>
+  <p>Este é um parágrafo com estilo definido.</p>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+
+%-----------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Carregando o CSS em arquivo separado}
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de CSS com arquivo separado</title>
+  <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+  <h1>Título da Página</h1>
+  <p>Este é um parágrafo com estilo definido.</p>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+%-------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Ajustanto para duas colunas - controle do foco}
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+  <style>
+    .column {
+      float: left;
+      width: 50%;
+    }
+    .clear {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <h1>Controle de Foco por Ação</h1>
+\end{verbatim}
+
+\end{frame}
+
+%-----------------------------------------------
+
+
+\begin{frame}[fragile]
+\frametitle{Ajustanto foco em duas colunas - continuação}
+
+\begin{verbatim}
+  <div class="column">
+    <button onclick="definirFoco('input2')">
+    			Preencher Campo 1</button>
+    <input type="text" id="input1" placeholder="Campo 1">
+  </div>
+  <div class="column">
+    <button onclick="definirFoco('input1')">
+    			Preencher Campo 2</button>
+    <input type="text" id="input2" placeholder="Campo 2">
+  </div>
+  <script>
+    function definirFoco(elementId) {
+      document.getElementById(elementId).focus();
+    }
+  </script></body></html>
+\end{verbatim}
+
+\end{frame}
+%-----------------------------------------------
+% Slides anteriores...
+
+\begin{frame}[fragile]
+\frametitle{Controle de Foco por Ação - tudo em uma coluna}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+  <style>
+    .column {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Controle de Foco por Ação</h1>
+\end{verbatim}
+
+\column{0.5\textwidth}
+\end{columns}
+
+\end{frame}
+%--------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Controle de Foco por Ação - tudo em uma coluna}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{verbatim}
+  <div class="column">
+    <button onclick="definirFoco('input1')">Preencher Campo 1</button>
+    <input type="text" id="input1" placeholder="Campo 1"><br><br>
+    <button onclick="definirFoco('input2')">Preencher Campo 2</button>
+    <input type="text" id="input2" placeholder="Campo 2">
+  </div>
+
+  <script>
+    function definirFoco(elementId) {
+      document.getElementById(elementId).focus();
+    }
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\column{0.5\textwidth}
+\end{columns}
+
+\end{frame}
+
+
+
+% Slides para os exemplos restantes (20 a 22) continuam aqui...
+
+\end{document}
+
+
+
+%-----------------------------------------------
+
+%-----------------------------------------------
+
+
+%-----------------------------------------------
+
+%-----------------------------------------------
+
+\end{document}

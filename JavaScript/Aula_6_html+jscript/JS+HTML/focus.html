@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Controle de Foco por Ação</h1>
+  <button onclick="definirFoco('input1')">Preencher Campo 1</button>
+  <button onclick="definirFoco('input2')">Preencher Campo 2</button>
+  <input type="text" id="input1" placeholder="Campo 1">
+  <input type="text" id="input2" placeholder="Campo 2">
+
+  <script>
+    function definirFoco(elementId) {
+      document.getElementById(elementId).focus();
+    }
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,17 @@
+\frametitle{Atividade Prática}
+\begin{itemize}
+    \item Exercício prático: Crie um componente React simples e renderize-o em uma página web.
+  \end{itemize}
+
+\begin{exampleblock}{Código de um Componente "HelloWorld" React}
+    \begin{verbatim}
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+
+    function HelloWorld() {
+      return <h1>Hello, React!</h1>;
+    }
+
+    ReactDOM.render(<HelloWorld />, document.getElementById('root'));
+    \end{verbatim}
+\end{exampleblock}

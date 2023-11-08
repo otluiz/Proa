@@ -1,0 +1,6 @@
+\frametitle{Exemplo}
+Acesso a Propriedades: Você pode acessar as propriedades de um objeto usando a notação de ponto (objeto.propriedade) ou a notação de colchetes (objeto['propriedade']).
+\begin{verbatim}
+console.log(pessoa.nome); // "João"
+console.log(pessoa['idade']); // 30
+\end{verbatim}

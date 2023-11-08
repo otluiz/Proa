@@ -1,0 +1,679 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Instrodução ao React.JS}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+\usepackage{dirtree}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Estrutura de pastas dos nossos projetos}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Criando componentes}
+\framesubtitle{Nossa pasta de projetos}
+\begin{itemize}
+	\item[•] Vamos criar nossos Componentes React numa pasta chamada componentes, que fica no \texttt{src}
+	\item[•] Formato usual tipo ``CamelCase'' exemplo: \textbf{P}rimeiro\textbf{C}omponente.js
+	\item[•] Nesse arquivo criamos um função, esta vai conter o código desse componente (a lógica)
+	\item[•] Também precisamos ``exportar'' esta função, para reutilizá-la
+	\item[•] Bora praticar!!
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}{Componentes React}
+%\documentclass{beamer}
+
+
+
+\begin{frame}
+\frametitle{Minha Imagem}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{Figuras/react1.png}
+\caption{Componentes React}
+\end{figure}
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Criando um componente (do zero)}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Prmeiros passos}
+\framesubtitle{Primeiros passo!!}
+\begin{itemize}
+	\item[•] Primeiro passo: criamos uma pasta para o projeto (no seu S.O.) ou no VSCode
+	\pause
+	\item[•] Segundo passo: \$ npx create-react-app seu-app
+	\pause
+	\item[•] Terceiro passo: entrar na pasta ``seu-app'' (cd seu-app)
+	\pause
+	\item[•] Quarto passo: inicia a aplicação: npm start
+	\pause
+	\item[•] Quinto passo: agora você cria a pasta componentes
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{Estrutura de Diretórios do Projeto - Exemplo}
+\dirtree{%
+.1 seu-app/.
+.2 README.md.
+.2 node\_modules/.
+.2 package.json.
+.2 public/.
+.3 index.html.
+.3 favicon.ico.
+.2 src/.
+.3 App.js.
+.3 index.js.
+.3 logo.svg.
+.3 componente/.
+.4 MeuComponente.js.
+.2 .gitignore.
+}
+\end{frame}
+%------------------------------------------
+\begin{frame}{Partes de um componente}
+\framesubtitle{Terceira parte}
+
+ \textbf{Acompanhe também pelo aquivo que o prof vai disponibilizar}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Exemplo}
+\frametitle{MeuComponente.js}
+\begin{lstlisting}[language=JavaScript]
+import React from 'react';
+
+function MeuComponente() {
+  return (
+    <div>
+      Meu primeiro componente
+    </div>
+  );
+}
+
+export default MeuComponente;
+\end{lstlisting}
+\end{frame}
+
+
+%------------ funçoes seta - slide 2 -------------------
+
+
+\begin{frame}[fragile]{Exemplo com funções ``Seta''}
+\frametitle{outra forma de: MeuComponente.js}
+Isso está na mesma estrutua de pastas
+\begin{lstlisting}[language=JavaScript]
+const MeuComponente = () => {
+    return(
+        <div>
+            <h1>Meu primeiro componente</h1>
+        </div>
+    );
+};
+
+export default MeuComponente;
+\end{lstlisting}
+\end{frame}
+
+
+
+
+\begin{frame}{Utilizando o componente criado}
+\framesubtitle{Importando é importante}
+\begin{itemize}
+	\item[•] A importação é a maneira que temos de reutilizar um componente
+	\pause
+	\item[•] Utilizamos a sintaxe: import X from './componente/X, onde ``X'' é o nome do componente
+	\pause
+	\item[•] Para colocar o componente importado em outro componente precisamos colocar na forma de tag: $<MeuComponente/>$
+	\pause
+	\item[•] Após esse passo finalizamos a importação do componente.
+
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Usando um coponente criado}
+\framesubtitle{No arquivo App.js}
+\begin{lstlisting}[language=JavaScript]
+//componentes
+import MeuComponente from './componentes/MeuComponente';
+
+// styles /css
+import './App.css';
+
+function App() {
+  return (
+    <div className="App"> // <-- className ??
+      <h1>Fundamentos React</h1>
+      <MeuComponente/> // <-- aqui vai nosso componente novo
+    </div>
+  );
+}
+export default App;
+\end{lstlisting}
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{JSX}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}{JSX}
+\framesubtitle{Algumas diferenças do HTML e Javascript original}
+\begin{itemize}
+	\item[•] JSX é o HTML do React
+	\pause
+	\item[•] É onde vamos declarar as \textbf{tags} que serão exibidas no navegador
+	\pause
+	\item[•] Ficam dentro do $return {  ... }$ do componente
+	\pause
+	\item[•] As instruções são semelhantes ao HTML e ao JS
+	\pause
+	\item[•] Temos algums diferenças do HTML, por exemplo: class agora é \textbf{className}
+	\item[•] O JSX só pode ter \textbf{um elemento pai}
+	
+\end{itemize}
+\end{frame}
+
+
+%
+\begin{frame}[fragile]
+\frametitle{Exemplos de comentários}
+\framesubtitle{Comentários no JSX}
+
+\begin{lstlisting}[language=JavaScript]
+const UmaFuncao = () => {
+ // Um comentario de uma linha
+ 
+ /*
+   Um comentario de varias linhas
+ */
+return (
+      <div>
+       {/* Outro comentario */}
+        <h1>Meu React</h1>
+        <p className="Teste">Um texto</p>
+      </div>
+  );
+};
+\end{lstlisting}
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Template Expressions}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{JSX}
+\framesubtitle{Javascript ``original'' e JSX, trocando figurinhas}
+\begin{itemize}
+	\item[•] Template Expression é o recurso que permite executar JS e JSX, interpolando variáveis
+	\pause
+	\item[•] Isso é muito útil para seus projetos React
+	\pause
+	\item[•] A sintaxe e $\{Algum codigo em JS \}$ do componente
+	\pause
+	\item[•] Tudo que está entre as chaves ${..}$ é processado em JS e retorna um resultado
+	\pause
+	\item[•] Temos algums diferenças do HTML, por exemplo: class agora é \textbf{className}
+	\item[•] Vamos ver na prática
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Estrutura de Diretórios do Projeto - Exemplo}
+\dirtree{%
+.1 seu-app/.
+.2 README.md.
+.2 node\_modules/.
+.2 package.json.
+.2 public/.
+.3 index.html.
+.3 favicon.ico.
+.2 src/.
+.3 App.js.
+.3 index.js.
+.3 logo.svg.
+.3 componente/.
+.4 MeuComponente.js.
+.4 TemplateExpression.js.
+.2 .gitignore.
+}
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Hooks}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Arrow Function}
+\framesubtitle{Funções ``seta''}
+Vamos criar esse componente??
+\begin{verbatim}
+ const dobrar = (num) => num * 2;
+ console.log(dobrar(5)); // Isso imprimirá 10
+\end{verbatim}
+\pause
+\begin{exampleblock}{Neste caso}
+ A função dobrar aceita um argumento ``num'' e retorna o dobro desse número de forma concisa.
+\end{exampleblock}
+\pause
+\begin{block}{Em resumo}
+As funções de seta são uma adição útil ao JavaScript, especialmente para funções curtas e simples. Elas são particularmente úteis quando você deseja preservar o contexto do this do escopo circundante e tornar seu código mais legível e conciso em muitos casos.
+
+\end{block}
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]{Para praticar}
+\begin{exampleblock}{Create React App}
+Certifique-se de ter um projeto React configurado
+\end{exampleblock}
+\begin{verbatim}
+// slide 1/3
+import React, { useState } from 'react';
+function Calculator() {
+  const [inputValue, setInputValue] = useState(''); // Estado para armazenar o valor inserido
+  const [result, setResult] = useState(''); // Estado para
+  armazenar o resultado
+  // Função para lidar com a alteração do valor de entrada
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+// continua no proximo slide
+  // Função para dobrar o valor inserido
+  const doubleValue = () => {
+    const value = parseFloat(inputValue); // Converte a entrada para um número
+    if (!isNaN(value)) {
+      setResult(`O dobro de ${value} é ${value * 2}`);
+    } else {
+      setResult('Por favor, insira um número válido.');
+    }
+  };
+
+\end{verbatim}
+//continua no próximo slide
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Para praticar}
+\begin{exampleblock}{Create React App}
+Certifique-se de ter um projeto React configurado
+\end{exampleblock}
+\begin{verbatim}
+// slide 2/3
+
+  // Função para dobrar o valor inserido
+  const doubleValue = () => {
+    const value = parseFloat(inputValue); // Converte a entrada para um número
+    if (!isNaN(value)) {
+      setResult(`O dobro de ${value} é ${value * 2}`);
+    } else {
+      setResult('Por favor, insira um número válido.');
+    }
+  };
+// continua no proximo slide
+\end{verbatim}
+//continua no próximo slide
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Para praticar}
+\begin{verbatim}
+// slide 3/3
+  return (
+    <div>
+      <h1>Calculadora Simples</h1>
+      <input
+        type="text"
+        placeholder="Insira um valor"
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      <button onClick={doubleValue}>Dobrar</button>
+      <p>{result}</p>
+    </div>
+  ); }
+export default Calculator;
+\end{verbatim}
+\end{frame}
+
+
+
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Importar o componente}
+Agora é só importar o componente `Calculator'' para App.js
+
+\begin{verbatim}
+import React from 'react';
+import Calculator from './Calculator';
+
+function App() {
+  return (
+    <div className="App">
+      <Calculator />
+    </div>
+  );
+}
+export default App;
+\end{verbatim}
+
+\end{frame}
+
+%--------- para rodar ------------------------
+
+\begin{frame}[fragile]
+\frametitle{E para rodar ??}
+\begin{block}{Passo 1}
+Certifique-se de que seu servidor de desenvolvimento React esteja em execução (usando npm start ou algo semelhante).
+\end{block}
+\pause
+\begin{block}{Passo 2}
+Abra o navegador e acesse a página da aplicação. Você verá a interface da calculadora com um campo de entrada, um botão "Dobrar" e um espaço para exibir o resultado.
+\end{block}
+\pause
+\begin{block}{Passo 3}
+Insira um número no campo de entrada e clique no botão "Dobrar". O aplicativo calculará o dobro do valor inserido e o exibirá.
+\end{block}
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{JSX}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+%---------- Slide 1 ----------------------
+\begin{frame}{Introdução ao JSX}
+  \begin{block}{O que é JSX?}
+    JSX (JavaScript XML) é uma extensão da sintaxe do JavaScript que permite você escrever código HTML/XML dentro do código JavaScript.
+  \end{block}
+%---------- Slide 2 ----------------------  
+  \begin{block}{Por que usar JSX?}
+    - Facilita a criação de interfaces de usuário.
+    - Permite o uso de componentes React.
+    - Pode ser transformado em código JavaScript puro pelo Babel.
+    - Melhora a legibilidade do código.
+  \end{block}
+%---------- Slide 3 ----------------------  
+    \begin{block}{Sintaxe Básica}
+    - Use chaves `{}` para incorporar expressões JavaScript.
+    - Use `<elemento>` para criar elementos JSX.
+    - Os elementos JSX podem ter atributos e valores entre aspas.
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Um exemplo prático de JSX}
+O JSX permite incorporar valores de variáveis, criar elementos HTML como $<h1>$ e $<p>$, e também criar listas como $<ul>$ e $<li>$. Ele facilita a construção de interfaces de usuário em React de forma legível e expressiva.
+
+\begin{verbatim}
+import React from 'react';
+function App() {
+  const name = 'React.js';
+  return (
+    <div>
+      <h1>Exemplo de JSX</h1>
+      <p>Bem-vindo ao {name}</p>
+      <ul>
+        <li>Componente 1</li>
+        <li>Componente 2</li>
+      </ul>
+    </div>
+  ); } export default App;
+\end{verbatim}
+\end{frame}
+
+
+
+
+
+%------ slide 4 ------------------------------
+\begin{frame}[fragile]{Passo a passo para criar um componente}
+  \begin{block}{Passo 1 Desenvolvimento dos componentes}    
+    \begin{itemize}
+		\item[1] \textbf{Desenvolvimento local} Desenvolva os dois componentes em um ambiente local. Você pode criar os componentes em diretórios separados e desenvolvê-los usando um servidor de desenvolvimento local.	
+
+		\item[2]\textbf{Teste e comportamento} Certifique-se de que os componentes funcionem conforme o esperado e tenham o comportamento desejado em um ambiente de desenvolvimento local.
+	\end{itemize}
+  \end{block}
+
+  \begin{block}{Passo 2: Configuração do Ambiente de Produção}    
+    \begin{itemize}
+		\item[3] Certifique-se de que os componentes funcionem conforme o esperado e tenham o comportamento desejado em um ambiente de desenvolvimento local.
+	\end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------ slide 5 ------------------------------
+\begin{frame}[fragile]{Passo a passo para criar um componente}
+
+  \begin{block}{Passo 3: Configuração do Ambiente de Produção}    
+    \begin{itemize}
+		\item[1] Certifique-se de que os componentes funcionem conforme o esperado e tenham o comportamento desejado em um ambiente de desenvolvimento local.
+	\end{itemize}
+  \end{block}
+
+  \begin{block}{Passo 4: Criação de um Aplicativo de Exemplo}    
+    \begin{itemize}
+		\item[1]  Crie um aplicativo de exemplo que importa e usa os dois componentes. Isso permitirá que você teste os componentes em um contexto de aplicação..
+	\end{itemize}
+  \end{block}
+
+  \begin{block}{Passo 5: Implantação dos Componentes}    
+    \begin{itemize}
+		\item[1] Implante os componentes em um servidor ou serviço de hospedagem. Você pode usar uma variedade de opções, como Netlify, Vercel, GitHub Pages, ou implantar em seu próprio servidor.
+	\end{itemize}
+  \end{block}
+
+\end{frame}
+
+
+%------ slide 6 ------------------------------
+\begin{frame}[fragile]{Passo a passo para criar um componente}
+
+  \begin{block}{Passo 6: Publicação dos Componentes}    
+    \begin{itemize}
+		\item[1] Disponibilize os componentes para uso público. Isso pode envolver a criação de um pacote npm privado, publicando-os em um repositório de pacotes privado ou até mesmo como arquivos estáticos no servidor.
+	\end{itemize}
+  \end{block}
+
+  \begin{block}{Passo 7: Integração com Outros Projetos}    
+    \begin{itemize}
+		\item[1] Em outros projetos onde você deseja usar esses componentes, você pode instalá-los como pacotes npm ou incluir os arquivos diretamente em seu código, dependendo de como você os implantou.
+	\end{itemize}
+  \end{block}
+
+  \begin{block}{Passo 8: Monitoramento e Manutenção}    
+    \begin{itemize}
+		\item[1] Monitore o desempenho e a funcionalidade dos componentes em produção. Esteja pronto para realizar correções e atualizações conforme necessário.
+	\end{itemize}
+  \end{block}
+
+\end{frame}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\frametitle{Um exemplo prático de JSX}
+Dentro do diretório components,
+crie um arquivo chamado Componente1.js:
+
+\begin{verbatim}
+// touch components/Componente1.js (um editor de texto qq)
+import React from 'react';
+
+function Componente1() {
+  return (
+    <div>
+      <h2>Componente 1</h2>
+      <p>Este é o Componente 1. 
+      Clique em "Componente 1" para vê-lo em ação.</p>
+    </div>
+  );
+}
+export default Componente1;
+\end{verbatim}
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\frametitle{Outro exemplo prático de JSX}
+Ajuste na 1ª função (que tem componente1..)
+
+\begin{verbatim}
+  return (
+    <div>
+      <h1>Exemplo de Clique em Componente</h1>
+      <ul>
+        <li
+          onClick={() => handleComponentClick('Componente 1')}
+          className={activeComponent === 'Componente 1' ? 'active' : ''}
+        >
+          Componente 1
+        </li>
+        <li
+          onClick={() => handleComponentClick('Componente 2')}
+          className={activeComponent === 'Componente 2' ? 'active' : ''}
+        > continua abaixo ....
+\end{verbatim}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Um exemplo prático de JSX}
+Ajuste na 1ª função (que tem componente2..)
+
+\begin{verbatim}
+      .. contunuação ...
+          Componente 2
+        </li>
+      </ul>
+      {activeComponent === 'Componente 1' && (
+        <div>
+          <h2>Componente 1</h2>
+          <p>Este é o Componente 1. Clique em "Componente 1" para vê-lo em ação.</p>
+        </div>
+      )}
+      {activeComponent === 'Componente 2' && (
+        <div>
+          <h2>Componente 2</h2>
+          <p>Este é o Componente 2. Clique em "Componente 2" para vê-lo em ação.</p>
+        </div>
+      )}
+    </div> ); }  export default App;
+\end{verbatim}
+\end{frame}
+
+%-----------------------------------------------
+
+\end{document}

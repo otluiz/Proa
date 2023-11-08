@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Mostrar mensagem de saudação</h1>
+  <!-- Adicione um campo de entrada de texto -->
+  <input type="text" id="nome">
+  <button onclick="exibirSaudacao()">Saudação</button>
+
+  <script>
+    const saudacao = function(nome) {
+      return `Olá, ${nome}!`;
+    };
+
+    // Função para exibir a saudação com base no valor do campo de entrada
+    function exibirSaudacao() {
+      const nome = document.getElementById("nome").value;
+      const mensagem = saudacao(nome);
+      alert(mensagem); // Exibir a mensagem em um alerta
+    }
+  </script>
+</body>
+</html>

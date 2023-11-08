@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Integração HTML/JavaScript</title>
+</head>
+<body>
+  <h1>Mostrar mensagem de saudação</h1>
+  <button onclick="saudacao">Somar</button>
+
+  <script>
+	const saudacao = function(nome) {
+  		return `Olá, ${nome}!`;
+	};
+
+	const mensagem = saudacao("Eva");
+	Alert(`$(mensagem)`); // Saída: Olá, Eva!
+  </script>
+</body>
+</html>

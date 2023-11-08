@@ -1,0 +1,289 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+%\documentclass[[11pt, xcolor={dvipsnames,svgnames,table},portuguese]{beamer} 
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Lógica de Programação com Java Script}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Entrada de dados}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Introdução a Lógica de Programação com Java Script}
+\framesubtitle{ Entrada de dados em Java Script}
+	\begin{block}{Leitura de dados através de prompt}
+		\begin{itemize}
+		  \item[a.] O Java Script trata a entrada de dados como tipo texto (string)
+		  \pause
+		  \item[b.] Contudo, após receber os dados pode ser que precisemos mudar o tipo.
+		   \pause		  
+		  \item[c.] Para cada caso (do tipo de dado) presisamos tratar dentro do algoritmo. 
+		  \pause
+		  \item[d.] Então, como e quando devemos mudar os tipos de dados que trabalhamos no algoritmo?
+		\end{itemize}
+	\end{block} 
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Variáveis e Constantes em JavaScript}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}[fragile]
+\frametitle{Variáveis \texttt{let} e \texttt{const}}
+
+Na linguagem JavaScript, usamos \texttt{let} e \texttt{const} para declarar variáveis.
+
+\begin{itemize}
+  \item \texttt{let}: Permite criar variáveis mutáveis.
+  \item \texttt{const}: Cria variáveis imutáveis (constantes).
+\end{itemize}
+
+Exemplo:
+\begin{verbatim}
+const valorEmprestado = 2000;
+let resultado = "";
+\end{verbatim}
+
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Calculos com um pouco de desafios}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}
+João é uma pessoa que gosta de emprestar dinheiro aos amigos, contudo,
+\pause 
+chegando próximo ao final do ano João descobriu que seu dinheiro acabou.
+\pause
+João então teve que pedir dinheiro emprestado para fechar as contas no final do ano.
+\pause
+Será que João teve prezuízo?
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}
+O valor total que foi emprestado a outrem foi de 2.000 (dois mil reais)
+\pause 
+a uma taxa de 10\% ao mês,
+\pause
+o valor que João foi pedido a um agiota foi de 1900 (um mil e novecentos reais)
+\pause
+a uma taxa de 11\% ao mês.
+\pause
+ No final de um ano João ganhou ou perdeu dinheiro?
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}
+\frametitle{Algoritmo: Empréstimo X Investimento}
+
+Vamos fazer um algoritmo calcula se uma pessoa ganhou ou perdeu dinheiro após um ano.
+\vspace{0.5cm}
+\begin{enumerate}
+  \item Defina as constantes para os valores de empréstimo, taxas e juros.
+  \item Calcule os juros de empréstimo e valor pedido emprestado a alguém.
+  \item Calcule o saldo final.
+  \item Verifique se houve lucro, prejuízo ou equilíbrio.
+  \item Exiba o resultado no console.
+\end{enumerate}
+
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Código do Algoritmo}
+
+\begin{verbatim}
+// Dados dos empréstimos e investimentos
+const valorEmprestado = 2000;
+const taxaEmprestimo = 0.10;
+const valorPedidoEmprestado = 1900;
+const taxaPedidoEmprestado = 0.11;
+
+// Cálculos de juros...
+
+// Cálculo do saldo final...
+
+// Verificação do resultado...
+
+// Exibir o resultado...
+\end{verbatim}
+
+\end{frame}
+
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exemplo de Cálculo de Juros Simples}
+
+Aqui está um exemplo de cálculo de juros simples em HTML:
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head> <title>Cálculo de Juros Simples</title> </head>
+<body>
+  <h1>Calculadora de Juros Simples</h1>
+  <script>
+    const principal = 5000;
+    const taxaDeJuros = 10; // 10%
+    const periodo = 2;
+    const montante = principal + (principal * taxaDeJuros / 100 * periodo);
+    const resultado = `Montante com Juros Simples: $${montante.toFixed(2)}`;
+    document.write(resultado);
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exemplo de Cálculo de Juros Simples}
+Aqui está um exemplo de cálculo de juros simples em HTML com prompts de comando:
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html><head>
+  <title>Cálculo de Juros Simples</title></head>
+<body>
+  <h1>Calculadora de Juros Simples</h1>
+  <script>
+    const principal = parseFloat(prompt("Digite o valor principal:"));
+    const taxaDeJuros = parseFloat(prompt("Digite a taxa de juros (%):"));
+    const periodo = parseFloat(prompt("Digite o período (anos):"));
+    const montante = principal + (principal * taxaDeJuros / 100 * periodo);
+    const resultado = `Montante com Juros Simples: $${montante.toFixed(2)}`;
+    document.write(resultado);
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Continuação ..}
+
+\begin{verbatim}
+//continuação
+// Dados iniciais
+// Dados dos empréstimos e investimentos
+const valorEmprestado = 2000; // Valor total emprestado (R$)
+const taxaEmprestimo = 0.10; // (10% ao mês)
+const valorPedidoEmprestado = 1900; // Valor pedido emprestado (R$)
+const taxaPedidoEmprestado = 0.11; // (11% ao mês)
+// Cálculo dos juros
+// Juros de empréstimo em um ano (12 meses)
+const jurosEmprestimo = valorEmprestado * taxaEmprestimo * 12; 
+// Juros de empréstimo do valor pedido em um ano (12 meses)
+const jurosPedidoEmprestado = valorPedidoEmprestado * taxaPedidoEmprestado * 12; 
+// Cálculo do saldo final
+const saldoFinal = jurosEmprestimo - jurosPedidoEmprestado;
+
+\end{verbatim}
+
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exemplo de Cálculo de Juros Simples - JavaScript}
+
+\begin{verbatim}
+// Dados finais
+// Verificação do resultado
+let resultado = "";
+if (saldoFinal > 0) {
+  resultado = "Lucro! ganhou dinheiro";
+} else if (saldoFinal < 0) {
+  resultado = "Prejuízo! perdeu dinheiro";
+} else {
+  resultado = "Equilíbrio! Zero de saldo final";
+}
+
+// Exibir o resultado
+console.log(resultado);
+
+\end{verbatim}
+
+\end{frame}
+%-------------------------------------------------------------
+
+\end{document}

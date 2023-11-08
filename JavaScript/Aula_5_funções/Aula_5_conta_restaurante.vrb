@@ -1,0 +1,13 @@
+\frametitle{Exercício 1: Somar Dois Números (HTML/JavaScript) Parte 2}
+
+\begin{verbatim}
+    const num1 = parseFloat(prompt("Digite o primeiro número:"));
+    const num2 = parseFloat(prompt("Digite o segundo número:"));
+
+    const resultado = somar(num1, num2);
+    document.write(`A soma é: ${resultado}`);
+  </script>
+</body>
+</html>
+\end{verbatim}
+

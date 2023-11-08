@@ -1,0 +1,273 @@
+%++++++% Preâmbulo %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[13pt, xcolor={dvipsnames,svgnames}, portuguese]{beamer}
+%\documentclass[[11pt, xcolor={dvipsnames,svgnames,table},portuguese]{beamer} 
+
+\usetheme{CambridgeUS}
+
+\setbeamercolor*{structure}{bg=PineGreen!20,fg=PineGreen} %fg=PineGreen
+\definecolor{beamer@pinegreen}{rgb}{0.137,0.666,0.741}
+
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{use=structure,fg=structure.fg!50!black!80!black}
+
+\setbeamercolor{titlelike}{parent=palette primary,fg=structure.fg!50!black}
+\setbeamercolor{frametitle}{bg=gray!10!white,fg=PineGreen}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}  % idioma
+\usepackage{amsmath,amsfonts,amssymb,textcomp}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{ifpdf}
+\usepackage{listings}
+
+% Configurações para o ambiente lstlisting
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt
+}
+
+% here you should include other packages with \usepackage
+
+    \ifpdf
+
+      % hyperref should be the last package loaded:
+	  %\usepackage[pdftex]{hyperref}
+      \usepackage{pst-pdf}
+    \else
+
+      % make the command \href from hyperref available as a 'print only'
+      \newcommand{\href}[2]{#2}
+
+    \fi
+
+%Global Background must be put in preamble
+\usebackgroundtemplate%
+{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{Figuras/fundo.png}%
+}
+\setbeamertemplate{frametitle}[default][center]
+ 
+\author{Othon Oliveira}
+\title{Lógica de Programação com Java Script}
+\institute{SENAC - PROA} 
+\date{} 
+%\subject{} 
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+%\date{}
+\end{frame}
+
+% Capa - requer o TikZ
+\newcommand{\capa}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.south west)
+            {\begin{tikzpicture}[remember picture, overlay]
+                \fill[shading=radial,top color=orange,bottom color=orange,middle color=yellow] (0,0) rectangle (\paperwidth,\paperheight);
+            \end{tikzpicture}
+          };
+    \end{tikzpicture}
+}
+
+\begin{frame}\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Entrada de dados}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}{Introdução a Lógica de Programação com Java Script}
+\framesubtitle{ Entrada de dados em Java Script}
+	\begin{block}{Leitura de dados através de prompt}
+		\begin{itemize}
+		  \item[a.] O Java Script trata a entrada de dados como tipo texto (string)
+		  \pause
+		  \item[b.] Uma maneira de converter os dados a entrada em número: parseInt()
+		   \pause		  
+		  \item[c.] A função também trata se os dados não forem numéricos: (NaN)
+		  \pause
+		  \item[d.] Dessa forma, mostrada acima, a entrada de dados já tem um tratamento especial
+		\end{itemize}
+	\end{block} 
+\end{frame}
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Funções Especiais}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+\begin{frame}[fragile]
+\frametitle{Cálculos em JavaScript}
+\framesubtitle{Usando Funções de Entrada}
+
+\begin{verbatim}
+// Exemplo 1: Soma de Dois Números
+const num1 = parseFloat(prompt("Digite o primeiro número:"));
+const num2 = parseFloat(prompt("Digite o segundo número:"));
+const soma = num1 + num2;
+console.log("A soma é:", soma);
+\end{verbatim}
+Como se executa (rodar) esse código?
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+
+\begin{verbatim}
+// Exemplo 3: Multiplicação de Números
+const num1 = parseFloat(prompt("Digite o primeiro número:"));
+const num2 = parseFloat(prompt("Digite o segundo número:"));
+const multiplicacao = num1 * num2;
+console.log("A multiplicação é:", multiplicacao);
+\end{verbatim}
+Como se executa (rodar) esse código?
+\end{frame}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Calculos com um pouco de desafios}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}
+\frametitle{Apresentando a Média Aritmética}
+
+A média aritmética é uma medida de centralidade que representa o valor médio de um conjunto de números.
+
+\vspace{0.5cm}
+
+Para calcular a média aritmética:
+
+\begin{enumerate}
+\item Some todos os valores do conjunto.
+\item Divida a soma pelo número total de valores no conjunto.
+\end{enumerate}
+
+\vspace{0.5cm}
+Isso é expresso pela fórmula:
+
+\[
+\text{Média Aritmética} = \frac{v_1 + v_2 + v_3 + \ldots + v_N}{N}
+\]
+
+onde $v_i$ é cada valor individual do conjunto e $N$ é o número total de valores.
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exemplo de Uso da Média Aritmética}
+Vamos calcular a média aritmética de um conjunto de valores.
+\begin{verbatim}
+Vamos calcular a média aritmética dos valores 10, 15, 20, 25 e 30.
+
+\begin{verbatim}
+const valor1 = 10, valor2 = 15, valor3 = 20;
+const valor4 = 25, valor5 = 30;
+
+const soma = valor1 + valor2 + valor3 + valor4 + valor5;
+const quantidade = 5;
+const media = soma / quantidade;
+
+console.log("Soma:", soma);
+console.log("Média Aritmética:", media);
+
+\end{verbatim}
+Pergunta: Onde deverei "colar" esse código, para que funcione
+do jeito que está?
+\end{frame}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\section{Calculos com mais um pouco de desafios}
+%+++++++++++++++++++++++++++++++++++++++++++++++
+\begin{frame}
+\frametitle{Apresentando a Média Ponderada}
+A média ponderada é uma medida de centralidade que leva em consideração diferentes pesos atribuídos a cada valor no cálculo da média.
+\vspace{0.5cm}
+Para calcular a média ponderada:
+
+\begin{enumerate}
+\item Multiplique cada valor pelo seu respectivo peso.
+\item Some os produtos obtidos.
+\item Divida a soma pelo total dos pesos.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+Isso é expresso pela fórmula:
+\[
+\text{Média Ponderada} = \frac{v_1 \cdot p_1 + v_2 \cdot p_2 + v_3 \cdot p_3 + \ldots}{p_1 + p_2 + p_3 + \ldots}
+\]
+onde $v_i$ é cada valor individual do conjunto e $p_i$ é o peso correspondente a esse valor.
+
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exemplo de Cálculo de Juros Simples}
+
+Aqui está um exemplo de cálculo de juros simples em HTML:
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head> <title>Cálculo de Juros Simples</title> </head>
+<body>
+  <h1>Calculadora de Juros Simples</h1>
+  <script>
+    const principal = 5000;
+    const taxaDeJuros = 10; // 10%
+    const periodo = 2;
+    const montante = principal + (principal * taxaDeJuros / 100 * periodo);
+    const resultado = `Montante com Juros Simples: $${montante.toFixed(2)}`;
+    document.write(resultado);
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+%-------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Exemplo de Cálculo de Juros Simples}
+Aqui está um exemplo de cálculo de juros simples em HTML com prompts de comando:
+
+\begin{verbatim}
+<!DOCTYPE html>
+<html><head>
+  <title>Cálculo de Juros Simples</title></head>
+<body>
+  <h1>Calculadora de Juros Simples</h1>
+  <script>
+    const principal = parseFloat(prompt("Digite o valor principal:"));
+    const taxaDeJuros = parseFloat(prompt("Digite a taxa de juros (%):"));
+    const periodo = parseFloat(prompt("Digite o período (anos):"));
+    const montante = principal + (principal * taxaDeJuros / 100 * periodo);
+    const resultado = `Montante com Juros Simples: $${montante.toFixed(2)}`;
+    document.write(resultado);
+  </script>
+</body>
+</html>
+\end{verbatim}
+
+\end{frame}
+
+%%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%+++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+%-----------------------------------------------
+
+\end{document}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head> <title>Cálculo de Juros Simples</title> </head>
+<body>
+  <h1>Calculadora de Juros Simples</h1>
+  <script>
+    const principal = 5000;
+    const taxaDeJuros = 10; // 10%
+    const periodo = 2;
+    const montante = principal + (principal * taxaDeJuros / 100 * periodo);
+    const resultado = `Montante com Juros Simples: $${montante.toFixed(2)}`;
+    document.write(resultado);
+  </script>
+</body>
+</html>
